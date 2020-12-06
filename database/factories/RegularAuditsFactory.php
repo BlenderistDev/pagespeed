@@ -22,7 +22,6 @@ class RegularAuditsFactory extends Factory
      */
     public function definition()
     {
-
         $faker = Faker\Factory::create();
         return [
             'url' => $faker->url,
