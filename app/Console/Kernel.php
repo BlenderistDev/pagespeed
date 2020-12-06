@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Jobs\MakeAudit;
+use App\Models\RegularAudits;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function() {
+            RegularAudits::all()->each(function(RegularAudits $regularAudit) {
+                MakeAudit::dispatchIf($regularAudit->isDue(), $regularAudit->url);
+            });
+        })->everyMinute();
     }
 
     /**

@@ -9,11 +9,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "clue/block-react": "^1.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.1",
+        "philcook/gtmetrix": "^1.0",
+        "react/event-loop": "^1.1.1",
+        "react/http": "^1.1",
+        "react/promise": "^2.8.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
