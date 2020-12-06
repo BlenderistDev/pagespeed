@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CronTabString;
+use App\Rules\CronString;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegularAuditsPost extends FormRequest
@@ -26,11 +26,11 @@ class RegularAuditsPost extends FormRequest
     {
         return [
             'url' => ['required', 'active_url'],
-            'minute' => ['required', new CronTabString(59)],
-            'hour' => ['required', new CronTabString(23)],
-            'month_day' => ['required', new CronTabString(31)],
-            'month' => ['required', new CronTabString(12)],
-            'week_day' => ['required', new CronTabString(7)],
+            'minute' => ['required', new CronString()],
+            'hour' => ['required', new CronString()],
+            'month_day' => ['required', new CronString()],
+            'month' => ['required', new CronString()],
+            'week_day' => ['required', new CronString()],
         ];
     }
 }
