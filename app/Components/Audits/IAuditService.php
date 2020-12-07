@@ -7,7 +7,7 @@ use Database\Factories\AuditsFactoryPrototype;
 use Illuminate\Support\Collection;
 use React\EventLoop\LoopInterface;
 
-interface IAudit
+interface IAuditService
 {
     public function makeAudit(string $url, int $iMeasureId, LoopInterface &$loop);
     public function getAuditResultFactory(): AuditResultFactoryPrototype;

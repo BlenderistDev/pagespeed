@@ -10,7 +10,7 @@ class AuditCollection
     private $measurements;
 
     /**
-     * @var IAudit[] $auditServices
+     * @var IAuditService[] $auditServices
      */
     private array $auditServices = [];
 
@@ -20,7 +20,7 @@ class AuditCollection
         $this->auditServices = $auditServices;
     }
 
-    public function addSorting(string $serviceName, string $sortField, string $sortWay = 'ASC')
+    public function addSorting(string $serviceName, string $sortField, string $sortWay = 'ASC'): void
     {
         if (!empty($serviceName)) {
             $service = $this->getServiceByName($serviceName);
@@ -32,14 +32,9 @@ class AuditCollection
         }
     }
 
-    public function addLikeFilter(string $filterField, $value)
+    public function addLikeFilter(string $filterField, $value): void
     {
         $this->measurements->where($filterField, 'LIKE', "%$value%");
-    }
-
-    public function getCollection(int $page = 0, int $onPage = 10): Collection
-    {
-        return collect($this->measurements->paginate($onPage, ['*'], 'page', $page)->items());
     }
 
     public function getCount(): int
@@ -65,7 +60,7 @@ class AuditCollection
         return $aRes;
     }
 
-    private function getServiceByName($serviceName): ?IAudit
+    private function getServiceByName($serviceName): ?IAuditService
     {
         return $this->auditServices[$serviceName] ?? null;
     }
@@ -78,7 +73,7 @@ class AuditCollection
         return $relations ?? [];
     }
 
-    private function addServiceSort(IAudit $service, string $sortField, string $sortWay = 'ASC'): void
+    private function addServiceSort(IAuditService $service, string $sortField, string $sortWay = 'ASC'): void
     {
         $oModel = $service->getAuditResultFactory()->make();
         $oQuery = $oModel->select('value')
@@ -91,5 +86,10 @@ class AuditCollection
         } else {
           $this->measurements->orderByDesc($oQuery->take(1));
         }
+    }
+
+    private function getCollection(int $page = 0, int $onPage = 10): Collection
+    {
+        return collect($this->measurements->paginate($onPage, ['*'], 'page', $page)->items());
     }
 }

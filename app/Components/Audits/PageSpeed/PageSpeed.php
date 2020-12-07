@@ -2,7 +2,7 @@
 
 namespace App\Components\Audits\PageSpeed;
 
-use App\Components\Audits\IAudit;
+use App\Components\Audits\IAuditService;
 use Database\Factories\AuditResultFactoryPrototype;
 use Database\Factories\AuditsFactoryPrototype;
 use Illuminate\Support\Collection;
@@ -11,7 +11,7 @@ use React\EventLoop\LoopInterface;
 use React\Http\Browser;
 use React\Promise\PromiseInterface;
 
-abstract class PageSpeed implements IAudit
+abstract class PageSpeed implements IAuditService
 {
     private const PAGESPEED_API_LINK = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
 

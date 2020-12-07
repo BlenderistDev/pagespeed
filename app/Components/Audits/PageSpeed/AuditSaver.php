@@ -15,19 +15,19 @@ class AuditSaver
 
     private AuditsFactoryPrototype $auditFactory;
 
-    private function __construct(array $auditsData, AuditsFactoryPrototype $auditFactory)
-    {
-        $this->auditsData = $auditsData;
-        $this->auditFactory = $auditFactory;
-        $this->setExistingAuditsNames();
-    }
-
     public static function makeGooglePageSpeedAudits(array $auditsData, AuditsFactoryPrototype $auditFactory, AuditResultFactoryPrototype $auditResultFactory)
     {
         $auditSaver = new self($auditsData, $auditFactory);
         $auditSaver->addScoreAudit();
         $auditSaver->addAudits();
         $auditSaver->saveAudits($auditResultFactory);
+    }
+
+    private function __construct(array $auditsData, AuditsFactoryPrototype $auditFactory)
+    {
+        $this->auditsData = $auditsData;
+        $this->auditFactory = $auditFactory;
+        $this->setExistingAuditsNames();
     }
 
     private function addScoreAudit(): void
