@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\DesktopAudits;
+use App\Models\Audits;
 
-class DesktopAuditsFactory extends AuditsFactoryPrototype
+class AuditsFactory extends AuditsFactoryPrototype
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = DesktopAudits::class;
+    protected $model = Audits::class;
 }

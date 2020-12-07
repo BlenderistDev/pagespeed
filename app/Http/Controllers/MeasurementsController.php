@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\Audits\Audits;
+use App\Components\Audits\PageSpeed\MeasureCollectionBuilder;
 use App\Models\Measurements;
-use App\Services\MeasureCollectionBuilder;
+
 use Illuminate\Http\Request;
 
 class MeasurementsController extends Controller
@@ -15,7 +17,8 @@ class MeasurementsController extends Controller
      */
     public function index(Request $request)
     {
-        $oMeasureCollectionBuilder = new MeasureCollectionBuilder();
+        $audits = new Audits();
+        $oMeasureCollectionBuilder = $audits->getAuditCollection();
 
         $sFilter = $request->input('filter', '');
         if ($sFilter) {

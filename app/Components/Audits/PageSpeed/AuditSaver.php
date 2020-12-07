@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Components\Audits\PageSpeed;
+
+use Database\Factories\AuditsFactoryPrototype;
+use Database\Factories\AuditResultFactoryPrototype;
 
 class AuditSaver
 {
@@ -8,45 +11,43 @@ class AuditSaver
 
     private $auditsData;
 
-    public array $auditsToSave = [];
+    private $auditsToSave = [];
 
-    private $Audits;
+    private AuditsFactoryPrototype $auditFactory;
 
-    public function __construct(array $auditsData, $Audits)
+    private function __construct(array $auditsData, AuditsFactoryPrototype $auditFactory)
     {
         $this->auditsData = $auditsData;
-        $this->Audits = $Audits;
-        $this->setExistingAuditsNames($Audits);
+        $this->auditFactory = $auditFactory;
+        $this->setExistingAuditsNames();
     }
 
-    public static function makeGooglePageSpeedAudits(array $auditsData, int $measureId, $Audits, $ResultModel)
+    public static function makeGooglePageSpeedAudits(array $auditsData, AuditsFactoryPrototype $auditFactory, AuditResultFactoryPrototype $auditResultFactory)
     {
-        $auditSaver = new self($auditsData, $Audits);
+        $auditSaver = new self($auditsData, $auditFactory);
         $auditSaver->addScoreAudit();
         $auditSaver->addAudits();
-        $auditSaver->saveAudits($measureId, $ResultModel);
+        $auditSaver->saveAudits($auditResultFactory);
     }
 
-    public function addScoreAudit(): void
+    private function addScoreAudit(): void
     {
         $auditName = 'score';
         $auditId = $this->getAuditIdByName($auditName);
         $this->auditsToSave[$auditId] = $this->auditsData['lighthouseResult']['categories']['performance']['score'];
     }
 
-    public function saveAudits($iMeasureId, $ResultModel)
+    private function saveAudits(AuditResultFactoryPrototype $auditResultFactory)
     {
         foreach ($this->auditsToSave as $iAuditId => $aAudit) {
-            $oAudit = new $ResultModel([
+            $auditResultFactory->create([
                 'audits_id' => $iAuditId,
                 'value' => $aAudit,
-                'measurements_id' => $iMeasureId,
             ]);
-            $oAudit->save();
         }
     }
 
-    public function addAudits()
+    private function addAudits()
     {
         foreach ($this->auditsData['lighthouseResult']['audits'] as $auditName => $audit) {
             if (!empty($audit['numericValue'])) {
@@ -56,19 +57,19 @@ class AuditSaver
         }
     }
 
-    private function setExistingAuditsNames($Audits)
+    private function setExistingAuditsNames()
     {
-        $this->existingAuditNames = $Audits::all(['id', 'name'])->pluck('name', 'id');
+        $this->existingAuditNames = $this->auditFactory->modelName()::all()->pluck('name', 'id');
     }
 
     private function getAuditIdByName($auditName, $auditData = [])
     {
         $auditId = $this->existingAuditNames->search($auditName);
         if (!$auditId) {
-            $Audits = $this->Audits;
-            $auditData['name'] = $auditName;
-            $audit = new $Audits();
-            $audit->fill($auditData)->save();
+            $audit = $this->auditFactory->create([
+                'name' => $auditName,
+                'description' => $auditsData['description'] ?? '',
+            ]);
             $auditId = $audit->id;
         }
         return $auditId;

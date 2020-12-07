@@ -2,15 +2,15 @@
 
 namespace App\Observers;
 
+use App\Components\Audits\Audits;
 use App\Models\Measurements;
-use App\Services\GooglePageSpeed;
 
 class MeasurementObserver
 {
     public function created(Measurements $measure) 
     {
-        $sUrl =  $measure->domain;
-        $oGooglePageSpeed = new GooglePageSpeed();
-        $oGooglePageSpeed->makePageSpeedAudits($sUrl, $measure->id);
+        $url =  $measure->domain;
+        $audits = new Audits();
+        $audits->makeAudits($url, $measure->id);
     }
 }
