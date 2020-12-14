@@ -28,6 +28,14 @@ class Audits
         return new AuditCollection($this->getAuditServices());
     }
 
+    public function getAuditResults($measureIdList): array
+    {
+        foreach ($this->getAuditServices() as $serviceName => $service) {
+            $auditResults[$serviceName] = $service->getAuditResults($measureIdList);
+        }
+        return $auditResults ?? [];
+    }
+
     /**
      * @return IAudit[]
      */

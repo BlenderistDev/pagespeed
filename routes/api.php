@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditResultsController;
 use App\Http\Controllers\AuditsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('audits', [AuditsController::class, 'index']);
+Route::post('audit-results', [AuditResultsController::class, 'index']);
+
 Route::post('measurements', [MeasurementsController::class, 'index']);
 Route::post('measurements/store', [MeasurementsController::class, 'store']);
 

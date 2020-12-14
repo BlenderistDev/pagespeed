@@ -54,4 +54,22 @@ abstract class PageSpeed implements IAuditService
         return $audits;
     }
 
+    public function getAuditResults(array $measureIdList): Collection
+    {
+        $audits = $this->getAuditResultFactory()->modelName()::byMeausrements($measureIdList)
+            ->get()
+            ->groupBy(['measurements_id'])
+            ;
+        $audits = $audits->transform(function($item) {
+            return $item->keyBy('audits_id');
+        });
+        // var_dump($measureIdList);
+        return $audits;
+        
+        // exit;
+        // $audits = $audits->transform(function($item) {
+        //     return $item->keyBy('audits_id');
+        // });
+        return $audits;
+    }
 }

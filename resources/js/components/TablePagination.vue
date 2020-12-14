@@ -2,27 +2,32 @@
   div
     nav(aria-label='...')
       ul(class="pagination")
-        li(v-for="n in pagesCount" v-bind:class="getClassForPage(n)")
-          a(class='page-link' v-on:click="$emit('page-change', n)")
+        li(v-for="n in getPageCount" :class="getClassForPage(n)")
+          a(class='page-link' v-on:click="setPage(n)")
             |{{ n }}
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-  props: ['page', "onPage", "count"],
   methods: {
+    ...mapActions([
+      'setPage',
+    ]),
     getClassForPage: function(page) {
-      if (page === this.page) {
+      if (page === this.getPage) {
         return 'page-item active';
       } else {
         return 'page-item';
       }
-    }
+    },
   },
   computed: {
-    pagesCount: function() {
-      return Math.ceil(this.count / this.onPage);
-    }
-  }
+    ...mapGetters([
+      'getPage',
+      'getPageCount',
+    ]),
+  },
 }
 </script>

@@ -88,8 +88,8 @@ class AuditCollection
         }
     }
 
-    private function getCollection(int $page = 0, int $onPage = 10): Collection
+    public function getCollection(int $page = 0, int $onPage = 10): Collection
     {
-        return collect($this->measurements->paginate($onPage, ['*'], 'page', $page)->items());
+        return collect($this->measurements->paginate($onPage, ['*'], 'page', $page));
     }
 }

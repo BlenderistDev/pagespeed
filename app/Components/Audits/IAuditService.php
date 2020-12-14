@@ -15,4 +15,5 @@ interface IAuditService
     public function getServiceName(): String;
     public function getLinkName(): String;
     public function parseServicesFromCollection(Collection $measurements): Collection;
+    public function getAuditResults(array $measureIdList): Collection;
 }

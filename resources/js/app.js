@@ -32,6 +32,7 @@ Vue.component('admin', require('./components/admin/admin.vue').default);
 
 import Vue from 'vue';
 import VueRouter from 'vue-router'
+import Vuex from 'vuex';
 
 import RegularAuditForm from './components/admin/RegularAuditForm.vue';
 import RegularAuditList from './components/admin/RegularAuditList.vue';
@@ -47,11 +48,16 @@ const routes = [
 
 window.Vue = Vue;
 window.VueRouter = VueRouter;
+window.Vuex = Vuex;
 
 Vue.use(VueRouter)
+Vue.use(Vuex);
+
+import store from './store/store.js';
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store: new Vuex.Store(store),
 });
 

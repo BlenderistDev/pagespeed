@@ -18,4 +18,9 @@ abstract class ServiceAuditsPrototype extends Model
     abstract public function getServiceName(): string;
 
     abstract public function getHeaders(): Collection;
+
+    public function scopeByMeausrements($query, array $measurementIdList)
+    {
+        return $query->whereIn('measurements_id', $measurementIdList);
+    }
 }

@@ -20,22 +20,25 @@ class MeasurementsController extends Controller
         $audits = new Audits();
         $oMeasureCollectionBuilder = $audits->getAuditCollection();
 
-        $sFilter = $request->input('filter', '');
-        if ($sFilter) {
-            $oMeasureCollectionBuilder->addLikeFilter('domain', $sFilter);
+        $filter = $request->input('filter', []);
+        if (!empty($filter['field']) && !empty($filter['value'])) {
+            $oMeasureCollectionBuilder->addLikeFilter($filter['field'], $filter['value']);
         }
 
-        $sSortField = $request->input('sortField'. '');
-        $sSortWay = $request->input('sortWay', '');
-        $sSortService = (string) $request->input('sortServiceName', '');
-
-        if ($sSortField) {
-            $oMeasureCollectionBuilder->addSorting($sSortService, $sSortField, $sSortWay);
+        $sort = $request->input('sort', []);
+        if (!empty($sort['field']) && !empty($sort['way'])) {
+            $oMeasureCollectionBuilder->addSorting($sort['service'] ?? '', $sort['field'], $sort['way']);
         }
 
-        $iPage = $request->input('page');
-        $iOnPage = $request->input('onPage');
-        return $oMeasureCollectionBuilder->parse($iPage, $iOnPage);
+        $page = $request->input('page');
+        $pageNumber = $page['page'] ?? 1;
+        $onPage = $page['onPage'] ?? 10;
+
+        return $oMeasureCollectionBuilder->getCollection($pageNumber, $onPage);
+        return [
+            'count' => $oMeasureCollectionBuilder->getCount(),
+            'measurements' => $oMeasureCollectionBuilder->getCollection($pageNumber, $onPage),
+        ];
     }
 
     /**
