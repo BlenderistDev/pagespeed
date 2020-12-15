@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import PreLoader from './PreLoader.vue';
 
 export default {
@@ -21,14 +22,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'fetchMeasurements'
+    ]),
     addMeasure: function() {
       this.$refs.preloader.show();
-        axios.post('/api/measurements/store', {
-          domain: this.domain,
-        }).then(response => {
-          this.$refs.preloader.hide();
-          this.$emit('new-measure-added');
-        });
+      axios.post('/api/measurements/store', {
+        domain: this.domain,
+      }).then(response => {
+         this.$refs.preloader.hide();
+        this.fetchMeasurements();
+      });
     },
   }
 }
@@ -37,6 +41,5 @@ export default {
 <style scoped>
   .card {
     width: 100%;
-    /* padding: 20px; */
   }
 </style>

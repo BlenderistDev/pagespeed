@@ -2,43 +2,34 @@
   thead
     tr
       th(scope="col") 
-        SortButton(columnName="domain" v-bind:sortWay="sortWay" v-on:sorting="sortMeasurements($event)") domain
+        SortButton(columnName="domain") domain
       th(scope="col")
-        SortButton(:sortWay="sortWay" columnName="created_at"  v-on:sorting="sortMeasurements($event)") created_at
+        SortButton(columnName="created_at") created_at
 
       template(v-for="(serviceAudits, serviceKey) in audits")
         template(v-for="audit in serviceAudits")
-          AuditServiceHeader(
-            :audit="audit"
-            :showColumns="showColumns[serviceKey]"
-            :serviceKey="serviceKey"
-            v-on:sortByAudit="sortMeasurementsByAudit($event)"
-          )
+          th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col")
+            SortButtonAudit(
+              :auditId="audit.id"
+              :service="serviceKey"
+            ) {{ audit.name }}
 </template>
 
 <script>
 import SortButton from './SortButton.vue';
-import AuditServiceHeader from './AuditServiceHeader.vue';
-import { mapGetters } from 'vuex';
+import SortButtonAudit from './SortButtonAudit.vue';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   components: {
       SortButton,
-      AuditServiceHeader,
+      SortButtonAudit,
   },
-  props: ['showColumns','sortField', 'sortWay'],
   computed: {
-    audits: function() {
-      return this.$store.state.audits;
-    }
+    ...mapState([
+      'audits',
+      'showColumns',
+    ]),
   },
-  methods: {
-    sortMeasurements: function(sortObject) {
-      this.$emit('sort', sortObject);
-    },
-    sortMeasurementsByAudit: function(sortObject) {
-      this.$emit('sortByAudit', sortObject);
-    },
-  }
 }
 </script>

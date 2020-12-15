@@ -5,8 +5,8 @@ export default {
     auditResults: {},
 
     sort: {
-      field: '',
-      way: '',
+      field: 'created_at',
+      way: 'DESC',
       service: '',
     },
     page: {
@@ -64,7 +64,6 @@ export default {
         sort: state.sort,
       }).then((result) => {
         commit('setMeasurements', result.data.data);
-        console.log(result.data.last_page)
         commit('setPageCount', result.data.last_page);
         dispatch('fetchAuditResults');
       })

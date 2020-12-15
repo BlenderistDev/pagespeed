@@ -5,33 +5,24 @@
       td {{ measurement.created_at }}
       template(v-for="(serviceAudits, serviceKey) in audits")
         template(v-for="(audit, auditKey) in serviceAudits")
-          AuditServiceBody(
-            :measurementId="measurement.id"
-            :auditResults="auditResults[serviceKey]"
-            :audit="audit"
-            :serviceKey="serviceKey"
-          )
+          td(v-show="showColumns[serviceKey].includes(audit.name)" :class="serviceKey") 
+            template(v-if="auditResults[serviceKey] && auditResults[serviceKey][measurement.id] && auditResults[serviceKey][measurement.id][audit.id]")
+              | {{ auditResults[serviceKey][measurement.id][audit.id].value }}
 </template>
 
 <script>
 
-import AuditServiceBody from './AuditServiceBody.vue';
 import { mapState } from 'vuex';
 
 export default {
-    components: {
-      AuditServiceBody,
-    },
-    computed: {
-      ...mapState([
-        'auditResults',
-        'measurements',
-      ]),
-      audits: function() {
-        return this.$store.state.audits;
-      }
-    },
-    // props: ['measurements', 'auditResults'],
+  computed: {
+    ...mapState([
+      'auditResults',
+      'measurements',
+      'showColumns',
+      'audits'
+    ]),
+  },
 }
 </script>
 

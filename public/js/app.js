@@ -1960,65 +1960,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuditServiceBody.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['measurementId', 'auditResults', 'serviceKey', 'audit'],
-  computed: {
-    showColumns: function showColumns() {
-      return this.$store.getters.columnsForService(this.serviceKey);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceHeader.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuditServiceHeader.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SortButtonAudit.vue */ "./resources/js/components/SortButtonAudit.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    SortButtonAudit: _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  computed: {
-    showColumns: function showColumns() {
-      return this.$store.getters.columnsForService(this.serviceKey);
-    }
-  },
-  props: ['audit', 'serviceKey']
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -2045,11 +1986,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     MeasureForm: _MeasureForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     MeasureTable: _MeasureTable_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  methods: {
-    refreshTable: function refreshTable() {
-      this.$refs.measureTable.getMeasurments();
-    }
   }
 });
 
@@ -2109,7 +2045,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PreLoader_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PreLoader.vue */ "./resources/js/components/PreLoader.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _PreLoader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PreLoader.vue */ "./resources/js/components/PreLoader.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2121,16 +2064,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    PreLoader: _PreLoader_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PreLoader: _PreLoader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       domain: ''
     };
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['fetchMeasurements'])), {}, {
     addMeasure: function addMeasure() {
       var _this = this;
 
@@ -2140,10 +2084,10 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.$refs.preloader.hide();
 
-        _this.$emit('new-measure-added');
+        _this.fetchMeasurements();
       });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -2185,21 +2129,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2214,91 +2143,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     MeasureTableBody: _MeasureTableBody_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     AuditFilter: _AuditFilter_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  data: function data() {
-    return {
-      audits: [],
-      auditResults: [],
-      measurements: [],
-      // showColumns: {},
-      filter: '',
-      sortField: 'created_at',
-      sortWay: 'DESC',
-      sortServiceName: '',
-      page: 1,
-      onPage: 10,
-      allCount: 0
-    };
-  },
   created: function created() {
-    this.fetchMeasurements();
     this.fetchAudits();
+    this.fetchMeasurements();
   },
   computed: {
     showColumns: function showColumns() {
       return this.$store.state.showColumns;
-    },
-    measureIdList: function measureIdList() {
-      var measureIdList = [];
-
-      for (var key in this.measurements) {
-        measureIdList.push(this.measurements[key].id);
-      }
-
-      return measureIdList;
-    },
-    measurementsRequestParams: function measurementsRequestParams() {
-      return {
-        page: this.page,
-        onPage: this.onPage,
-        filter: this.filter,
-        sortField: this.sortField,
-        sortWay: this.sortWay,
-        sortServiceName: this.sortServiceName
-      };
     }
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapActions"])(['fetchMeasurements', 'fetchAudits'])), {}, {
-    getAuditResults: function getAuditResults() {
-      var _this = this;
-
-      return axios.post('/api/audit-results', {
-        idList: this.measureIdList
-      }).then(function (response) {
-        _this.auditResults = response.data;
-      });
-    },
-    getMeasurments: function getMeasurments() {
-      var _this2 = this;
-
-      return axios.post('/api/measurements', this.measurementsRequestParams).then(function (result) {
-        _this2.measurements = result.data.measurements;
-        _this2.allCount = result.data.count;
-
-        _this2.getAuditResults();
-      });
-    },
-    filterMeasurments: function filterMeasurments(filterString) {
-      this.filter = filterString;
-      this.getMeasurments();
-    },
-    sortMeasurements: function sortMeasurements(sortObject) {
-      this.sortField = sortObject.sortField;
-      this.sortWay = sortObject.sortWay;
-      this.sortServiceName = '';
-      this.getMeasurments();
-    },
-    sortMeasurementsByAudit: function sortMeasurementsByAudit(sortObject) {
-      this.sortField = sortObject.sortField;
-      this.sortWay = sortObject.sortWay;
-      this.sortServiceName = sortObject.sortServiceName;
-      this.getMeasurments();
-    },
-    changePage: function changePage($page) {
-      this.page = $page;
-      this.getMeasurments();
-    },
-    updateAuditFilter: function updateAuditFilter(service, checkedColumns) {}
-  })
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapActions"])(['fetchMeasurements', 'fetchAudits']))
 });
 
 /***/ }),
@@ -2312,8 +2166,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AuditServiceBody_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuditServiceBody.vue */ "./resources/js/components/AuditServiceBody.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2332,21 +2185,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    AuditServiceBody: _AuditServiceBody_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['auditResults', 'measurements'])), {}, {
-    audits: function audits() {
-      return this.$store.state.audits;
-    }
-  }) // props: ['measurements', 'auditResults'],
-
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['auditResults', 'measurements', 'showColumns', 'audits']))
 });
 
 /***/ }),
@@ -2361,9 +2202,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SortButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SortButton.vue */ "./resources/js/components/SortButton.vue");
-/* harmony import */ var _AuditServiceHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AuditServiceHeader.vue */ "./resources/js/components/AuditServiceHeader.vue");
+/* harmony import */ var _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SortButtonAudit.vue */ "./resources/js/components/SortButtonAudit.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2387,22 +2233,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     SortButton: _SortButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    AuditServiceHeader: _AuditServiceHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    SortButtonAudit: _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['showColumns', 'sortField', 'sortWay'],
-  computed: {
-    audits: function audits() {
-      return this.$store.state.audits;
-    }
-  },
-  methods: {
-    sortMeasurements: function sortMeasurements(sortObject) {
-      this.$emit('sort', sortObject);
-    },
-    sortMeasurementsByAudit: function sortMeasurementsByAudit(sortObject) {
-      this.$emit('sortByAudit', sortObject);
-    }
-  }
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['audits', 'showColumns']))
 });
 
 /***/ }),
@@ -7281,25 +7114,6 @@ exports.push([module.i, "\n.card-columns {\n  -moz-column-count: 5;\n       colu
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.mobile {\n  background-color: green;\n}\n.desktop {\n  background-color: blue;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MeasureForm.vue?vue&type=style&index=0&id=db6a5db2&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MeasureForm.vue?vue&type=style&index=0&id=db6a5db2&scoped=true&lang=css& ***!
@@ -7312,7 +7126,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-db6a5db2] {\n  width: 100%;\n  /* padding: 20px; */\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-db6a5db2] {\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -38565,36 +38379,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./AuditServiceBody.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MeasureForm.vue?vue&type=style&index=0&id=db6a5db2&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MeasureForm.vue?vue&type=style&index=0&id=db6a5db2&scoped=true&lang=css& ***!
@@ -39401,100 +39185,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug&":
-/*!************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug& ***!
-  \************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "td",
-    {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.showColumns.includes(_vm.audit.name),
-          expression: "showColumns.includes(audit.name)"
-        }
-      ],
-      class: _vm.serviceKey
-    },
-    [
-      _vm.auditResults &&
-      _vm.auditResults[_vm.measurementId] &&
-      _vm.auditResults[_vm.measurementId][_vm.audit.id]
-        ? [
-            _vm._v(
-              _vm._s(_vm.auditResults[_vm.measurementId][_vm.audit.id].value)
-            )
-          ]
-        : _vm._e()
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug&":
-/*!**************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "th",
-    {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.showColumns && _vm.showColumns.includes(_vm.audit.name),
-          expression: "showColumns && showColumns.includes(audit.name)"
-        }
-      ],
-      attrs: { scope: "col" }
-    },
-    [
-      _c(
-        "SortButtonAudit",
-        { attrs: { auditId: _vm.audit.id, service: _vm.serviceKey } },
-        [_vm._v(_vm._s(_vm.audit.name))]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&lang=pug&":
 /*!************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&lang=pug& ***!
@@ -39515,13 +39205,7 @@ var render = function() {
       "div",
       { staticClass: "row justify-content-center" },
       [
-        _c("MeasureForm", {
-          on: {
-            "new-measure-added": function($event) {
-              return _vm.refreshTable()
-            }
-          }
-        }),
+        _c("MeasureForm"),
         _c("div", { staticClass: "card" }, [
           _c(
             "div",
@@ -39713,7 +39397,7 @@ var render = function() {
               staticClass: "btn btn-primary",
               on: {
                 click: function($event) {
-                  return _vm.getMeasurments()
+                  return _vm.fetchMeasurements()
                 }
               }
             },
@@ -39725,42 +39409,11 @@ var render = function() {
         _c(
           "table",
           { staticClass: "table table-striped table-bordered" },
-          [
-            _c("MeasureTableHeader", {
-              attrs: {
-                audits: _vm.audits,
-                showColumns: _vm.showColumns,
-                sortField: _vm.sortField,
-                sortWay: _vm.sortWay
-              },
-              on: {
-                sort: function($event) {
-                  return _vm.sortMeasurements($event)
-                },
-                sortByAudit: function($event) {
-                  return _vm.sortMeasurementsByAudit($event)
-                }
-              }
-            }),
-            _c("MeasureTableBody", {
-              attrs: {
-                audits: _vm.audits,
-                auditResults: _vm.auditResults,
-                showColumns: _vm.showColumns
-              }
-            })
-          ],
+          [_c("MeasureTableHeader"), _c("MeasureTableBody")],
           1
         )
       ]),
-      _c("TablePagination", {
-        attrs: { count: _vm.allCount, onPage: _vm.onPage, page: _vm.page },
-        on: {
-          "page-change": function($event) {
-            return _vm.changePage($event)
-          }
-        }
-      })
+      _c("TablePagination")
     ],
     2
   )
@@ -39800,14 +39453,39 @@ var render = function() {
             return [
               _vm._l(serviceAudits, function(audit, auditKey) {
                 return [
-                  _c("AuditServiceBody", {
-                    attrs: {
-                      measurementId: measurement.id,
-                      auditResults: _vm.auditResults[serviceKey],
-                      audit: audit,
-                      serviceKey: serviceKey
-                    }
-                  })
+                  _c(
+                    "td",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.showColumns[serviceKey].includes(
+                            audit.name
+                          ),
+                          expression:
+                            "showColumns[serviceKey].includes(audit.name)"
+                        }
+                      ],
+                      class: serviceKey
+                    },
+                    [
+                      _vm.auditResults[serviceKey] &&
+                      _vm.auditResults[serviceKey][measurement.id] &&
+                      _vm.auditResults[serviceKey][measurement.id][audit.id]
+                        ? [
+                            _vm._v(
+                              _vm._s(
+                                _vm.auditResults[serviceKey][measurement.id][
+                                  audit.id
+                                ].value
+                              )
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  )
                 ]
               })
             ]
@@ -39849,18 +39527,9 @@ var render = function() {
           "th",
           { attrs: { scope: "col" } },
           [
-            _c(
-              "SortButton",
-              {
-                attrs: { columnName: "domain", sortWay: _vm.sortWay },
-                on: {
-                  sorting: function($event) {
-                    return _vm.sortMeasurements($event)
-                  }
-                }
-              },
-              [_vm._v("domain")]
-            )
+            _c("SortButton", { attrs: { columnName: "domain" } }, [
+              _vm._v("domain")
+            ])
           ],
           1
         ),
@@ -39868,18 +39537,9 @@ var render = function() {
           "th",
           { attrs: { scope: "col" } },
           [
-            _c(
-              "SortButton",
-              {
-                attrs: { sortWay: _vm.sortWay, columnName: "created_at" },
-                on: {
-                  sorting: function($event) {
-                    return _vm.sortMeasurements($event)
-                  }
-                }
-              },
-              [_vm._v("created_at")]
-            )
+            _c("SortButton", { attrs: { columnName: "created_at" } }, [
+              _vm._v("created_at")
+            ])
           ],
           1
         ),
@@ -39887,18 +39547,29 @@ var render = function() {
           return [
             _vm._l(serviceAudits, function(audit) {
               return [
-                _c("AuditServiceHeader", {
-                  attrs: {
-                    audit: audit,
-                    showColumns: _vm.showColumns[serviceKey],
-                    serviceKey: serviceKey
+                _c(
+                  "th",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.showColumns[serviceKey].includes(audit.name),
+                        expression:
+                          "showColumns[serviceKey].includes(audit.name)"
+                      }
+                    ],
+                    attrs: { scope: "col" }
                   },
-                  on: {
-                    sortByAudit: function($event) {
-                      return _vm.sortMeasurementsByAudit($event)
-                    }
-                  }
-                })
+                  [
+                    _c(
+                      "SortButtonAudit",
+                      { attrs: { auditId: audit.id, service: serviceKey } },
+                      [_vm._v(_vm._s(audit.name))]
+                    )
+                  ],
+                  1
+                )
               ]
             })
           ]
@@ -57047,162 +56718,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/AuditServiceBody.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/AuditServiceBody.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AuditServiceBody_vue_vue_type_template_id_e71f48f2_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug& */ "./resources/js/components/AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug&");
-/* harmony import */ var _AuditServiceBody_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AuditServiceBody.vue?vue&type=script&lang=js& */ "./resources/js/components/AuditServiceBody.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _AuditServiceBody_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AuditServiceBody.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _AuditServiceBody_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AuditServiceBody_vue_vue_type_template_id_e71f48f2_lang_pug___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AuditServiceBody_vue_vue_type_template_id_e71f48f2_lang_pug___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/AuditServiceBody.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/AuditServiceBody.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/AuditServiceBody.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AuditServiceBody.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./AuditServiceBody.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-/***/ }),
-
-/***/ "./resources/js/components/AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug& ***!
-  \**********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_template_id_e71f48f2_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/pug-plain-loader!../../../node_modules/vue-loader/lib??vue-loader-options!./AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceBody.vue?vue&type=template&id=e71f48f2&lang=pug&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_template_id_e71f48f2_lang_pug___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceBody_vue_vue_type_template_id_e71f48f2_lang_pug___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/AuditServiceHeader.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/components/AuditServiceHeader.vue ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AuditServiceHeader_vue_vue_type_template_id_2060909c_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug& */ "./resources/js/components/AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug&");
-/* harmony import */ var _AuditServiceHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AuditServiceHeader.vue?vue&type=script&lang=js& */ "./resources/js/components/AuditServiceHeader.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AuditServiceHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AuditServiceHeader_vue_vue_type_template_id_2060909c_lang_pug___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AuditServiceHeader_vue_vue_type_template_id_2060909c_lang_pug___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/AuditServiceHeader.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/AuditServiceHeader.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/AuditServiceHeader.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AuditServiceHeader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceHeader.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/components/AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug& ***!
-  \************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceHeader_vue_vue_type_template_id_2060909c_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/pug-plain-loader!../../../node_modules/vue-loader/lib??vue-loader-options!./AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuditServiceHeader.vue?vue&type=template&id=2060909c&lang=pug&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceHeader_vue_vue_type_template_id_2060909c_lang_pug___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_AuditServiceHeader_vue_vue_type_template_id_2060909c_lang_pug___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -58187,8 +57702,8 @@ __webpack_require__.r(__webpack_exports__);
     audits: {},
     auditResults: {},
     sort: {
-      field: '',
-      way: '',
+      field: 'created_at',
+      way: 'DESC',
       service: ''
     },
     page: {
@@ -58264,7 +57779,6 @@ __webpack_require__.r(__webpack_exports__);
         sort: state.sort
       }).then(function (result) {
         commit('setMeasurements', result.data.data);
-        console.log(result.data.last_page);
         commit('setPageCount', result.data.last_page);
         dispatch('fetchAuditResults');
       });
