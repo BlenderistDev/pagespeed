@@ -1926,6 +1926,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1934,7 +1935,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      domain: ''
+      domain: '',
+      comment: ''
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['fetchMeasurements'])), {}, {
@@ -1943,7 +1945,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.$refs.preloader.show();
       axios.post('/api/measurements/store', {
-        domain: this.domain
+        domain: this.domain,
+        comment: this.comment
       }).then(function (response) {
         _this.$refs.preloader.hide();
 
@@ -2424,6 +2427,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['auditResults', 'measurements', 'showColumns', 'audits']))
@@ -2449,6 +2453,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -39126,6 +39132,27 @@ var render = function() {
               }
             }
           }),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.comment,
+                expression: "comment"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { placeholder: "Comment" },
+            domProps: { value: _vm.comment },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.comment = $event.target.value
+              }
+            }
+          }),
           _c(
             "button",
             {
@@ -39650,6 +39677,7 @@ var render = function() {
         { key: measurement.id },
         [
           _c("td", [_vm._v(_vm._s(measurement.domain))]),
+          _c("td", [_vm._v(_vm._s(measurement.comment))]),
           _c("td", [_vm._v(_vm._s(measurement.created_at))]),
           _vm._l(_vm.audits, function(serviceAudits, serviceKey) {
             return [
@@ -39731,6 +39759,16 @@ var render = function() {
           [
             _c("SortButton", { attrs: { columnName: "domain" } }, [
               _vm._v("domain")
+            ])
+          ],
+          1
+        ),
+        _c(
+          "th",
+          { attrs: { scope: "col" } },
+          [
+            _c("SortButton", { attrs: { columnName: "comment" } }, [
+              _vm._v("comment")
             ])
           ],
           1

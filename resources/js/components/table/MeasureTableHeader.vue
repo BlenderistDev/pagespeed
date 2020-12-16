@@ -3,6 +3,8 @@
     tr
       th(scope="col") 
         SortButton(columnName="domain") domain
+      th(scope="col") 
+        SortButton(columnName="comment") comment
       th(scope="col")
         SortButton(columnName="created_at") created_at
 

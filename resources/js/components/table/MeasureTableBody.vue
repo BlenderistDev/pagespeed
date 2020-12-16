@@ -2,6 +2,7 @@
   tbody
     tr(v-for="measurement in measurements" v-bind:key="measurement.id")
       td {{ measurement.domain }}
+      td {{ measurement.comment }}
       td {{ measurement.created_at }}
       template(v-for="(serviceAudits, serviceKey) in audits")
         template(v-for="(audit, auditKey) in serviceAudits")

@@ -51,6 +51,7 @@ class MeasurementsController extends Controller
     {
         $oMeasurements = new Measurements([
             'domain' => $request->input('domain'),
+            'comment' => $request->input('comment'),
         ]);
         $oMeasurements->save();
     }

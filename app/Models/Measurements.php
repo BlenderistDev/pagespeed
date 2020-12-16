@@ -10,7 +10,7 @@ class Measurements extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['domain'];
+    protected $fillable = ['domain', 'comment'];
 
     public function measure(): HasMany
     {
