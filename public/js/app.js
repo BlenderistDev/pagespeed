@@ -7164,7 +7164,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.mobile {\n  background-color: green;\n}\n.desktop {\n  background-color: blue;\n}\n", ""]);
+exports.push([module.i, "\n.mobile {\n  background-color:lightgreen;\n}\n.desktop {\n  background-color: lightblue;\n}\n", ""]);
 
 // exports
 

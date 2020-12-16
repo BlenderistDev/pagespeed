@@ -28,9 +28,9 @@ export default {
 
 <style>
   .mobile {
-    background-color: green;
+    background-color:lightgreen;
   }
   .desktop {
-    background-color: blue;
+    background-color: lightblue;
   }
 </style>
