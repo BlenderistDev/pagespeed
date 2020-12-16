@@ -8,7 +8,7 @@
 
       template(v-for="(serviceAudits, serviceKey) in audits")
         template(v-for="audit in serviceAudits")
-          th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col")
+          th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col" :title="audit.description")
             SortButtonAudit(
               :auditId="audit.id"
               :service="serviceKey"

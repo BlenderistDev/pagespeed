@@ -39559,7 +39559,7 @@ var render = function() {
                           "showColumns[serviceKey].includes(audit.name)"
                       }
                     ],
-                    attrs: { scope: "col" }
+                    attrs: { scope: "col", title: audit.description }
                   },
                   [
                     _c(
