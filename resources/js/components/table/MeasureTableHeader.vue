@@ -1,9 +1,11 @@
 <template lang="pug">
   thead
     tr
-      th(scope="col") 
+      th(scope="col")
+        FilterForm(field="domain")
         SortButton(columnName="domain") domain
       th(scope="col") 
+        FilterForm(field="comment")
         SortButton(columnName="comment") comment
       th(scope="col")
         SortButton(columnName="created_at") created_at
@@ -20,12 +22,14 @@
 <script>
 import SortButton from './SortButton.vue';
 import SortButtonAudit from './SortButtonAudit.vue';
+import FilterForm from './FilterForm.vue';
 import { mapGetters, mapState } from 'vuex';
 
 export default {
   components: {
-      SortButton,
-      SortButtonAudit,
+    SortButton,
+    SortButtonAudit,
+    FilterForm,
   },
   computed: {
     ...mapState([

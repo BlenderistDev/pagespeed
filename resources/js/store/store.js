@@ -14,10 +14,7 @@ export default {
       page: 1,
       pageCount: 1,
     },
-    filter: {
-      field: '',
-      value: '',
-    },
+    filter: {},
     measurements: {},
   },
   getters: {
@@ -79,8 +76,8 @@ export default {
       commit('setPage', page);
       dispatch('fetchMeasurements');
     },
-    setFilter({commit, dispatch}, filter) {
-      commit('setFilter', filter);
+    addFilter({commit, dispatch}, filter) {
+      commit('addFilter', filter);
       dispatch('fetchMeasurements');
     },
   },
@@ -98,8 +95,8 @@ export default {
     setSort(state, sort) {
       state.sort = sort;
     },
-    setFilter(state, filter) {
-      state.filter = filter;
+    addFilter(state, filter) {
+      Vue.set(state.filter, filter.field, filter.value);
     },
     setPage(state, page) {
       Vue.set(state.page, 'page', page);

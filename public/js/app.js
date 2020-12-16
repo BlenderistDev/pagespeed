@@ -2311,8 +2311,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2329,7 +2327,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['setFilter']))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['addFilter']))
 });
 
 /***/ }),
@@ -2344,11 +2342,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TablePagination_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TablePagination.vue */ "./resources/js/components/table/TablePagination.vue");
-/* harmony import */ var _FilterForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilterForm.vue */ "./resources/js/components/table/FilterForm.vue");
-/* harmony import */ var _MeasureTableHeader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MeasureTableHeader.vue */ "./resources/js/components/table/MeasureTableHeader.vue");
-/* harmony import */ var _MeasureTableBody_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MeasureTableBody.vue */ "./resources/js/components/table/MeasureTableBody.vue");
-/* harmony import */ var _AuditFilter_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AuditFilter.vue */ "./resources/js/components/table/AuditFilter.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _MeasureTableHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MeasureTableHeader.vue */ "./resources/js/components/table/MeasureTableHeader.vue");
+/* harmony import */ var _MeasureTableBody_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MeasureTableBody.vue */ "./resources/js/components/table/MeasureTableBody.vue");
+/* harmony import */ var _AuditFilter_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AuditFilter.vue */ "./resources/js/components/table/AuditFilter.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2367,11 +2364,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-
 
 
 
@@ -2380,10 +2372,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     TablePagination: _TablePagination_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    FilterForm: _FilterForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    MeasureTableHeader: _MeasureTableHeader_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    MeasureTableBody: _MeasureTableBody_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    AuditFilter: _AuditFilter_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    MeasureTableHeader: _MeasureTableHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    MeasureTableBody: _MeasureTableBody_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AuditFilter: _AuditFilter_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   created: function created() {
     this.fetchAudits();
@@ -2394,7 +2385,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$store.state.showColumns;
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapActions"])(['fetchMeasurements', 'fetchAudits']))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])(['fetchMeasurements', 'fetchAudits']))
 });
 
 /***/ }),
@@ -2446,7 +2437,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SortButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SortButton.vue */ "./resources/js/components/table/SortButton.vue");
 /* harmony import */ var _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SortButtonAudit.vue */ "./resources/js/components/table/SortButtonAudit.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _FilterForm_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FilterForm.vue */ "./resources/js/components/table/FilterForm.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2472,15 +2464,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     SortButton: _SortButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    SortButtonAudit: _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    SortButtonAudit: _SortButtonAudit_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FilterForm: _FilterForm_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['audits', 'showColumns']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(['audits', 'showColumns']))
 });
 
 /***/ }),
@@ -39550,10 +39546,12 @@ var render = function() {
             expression: "value"
           }
         ],
-        staticClass: "form-control",
         attrs: { name: "filter" },
         domProps: { value: _vm.value },
         on: {
+          change: function($event) {
+            return _vm.addFilter(_vm.filter)
+          },
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -39562,20 +39560,6 @@ var render = function() {
           }
         }
       })
-    ]),
-    _c("div", { staticClass: "form-group col-md-6" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          on: {
-            click: function($event) {
-              return _vm.setFilter(_vm.filter)
-            }
-          }
-        },
-        [_vm._v("Отфильтровать")]
-      )
     ])
   ])
 }
@@ -39612,28 +39596,18 @@ var render = function() {
           1
         )
       }),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-4 mr-auto" },
-          [_c("FilterForm", { attrs: { field: "domain" } })],
-          1
-        ),
-        _c("div", { staticClass: "col-auto" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary",
-              on: {
-                click: function($event) {
-                  return _vm.fetchMeasurements()
-                }
-              }
-            },
-            [_vm._v("Обновить")]
-          )
-        ])
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              return _vm.fetchMeasurements()
+            }
+          }
+        },
+        [_vm._v("Обновить")]
+      ),
       _c("div", { staticClass: "measure-table" }, [
         _c(
           "table",
@@ -39757,6 +39731,7 @@ var render = function() {
           "th",
           { attrs: { scope: "col" } },
           [
+            _c("FilterForm", { attrs: { field: "domain" } }),
             _c("SortButton", { attrs: { columnName: "domain" } }, [
               _vm._v("domain")
             ])
@@ -39767,6 +39742,7 @@ var render = function() {
           "th",
           { attrs: { scope: "col" } },
           [
+            _c("FilterForm", { attrs: { field: "comment" } }),
             _c("SortButton", { attrs: { columnName: "comment" } }, [
               _vm._v("comment")
             ])
@@ -54640,10 +54616,7 @@ __webpack_require__.r(__webpack_exports__);
       page: 1,
       pageCount: 1
     },
-    filter: {
-      field: '',
-      value: ''
-    },
+    filter: {},
     measurements: {}
   },
   getters: {
@@ -54728,10 +54701,10 @@ __webpack_require__.r(__webpack_exports__);
       commit('setPage', page);
       dispatch('fetchMeasurements');
     },
-    setFilter: function setFilter(_ref6, filter) {
+    addFilter: function addFilter(_ref6, filter) {
       var commit = _ref6.commit,
           dispatch = _ref6.dispatch;
-      commit('setFilter', filter);
+      commit('addFilter', filter);
       dispatch('fetchMeasurements');
     }
   },
@@ -54748,8 +54721,8 @@ __webpack_require__.r(__webpack_exports__);
     setSort: function setSort(state, sort) {
       state.sort = sort;
     },
-    setFilter: function setFilter(state, filter) {
-      state.filter = filter;
+    addFilter: function addFilter(state, filter) {
+      Vue.set(state.filter, filter.field, filter.value);
     },
     setPage: function setPage(state, page) {
       Vue.set(state.page, 'page', page);

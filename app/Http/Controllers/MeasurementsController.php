@@ -21,8 +21,10 @@ class MeasurementsController extends Controller
         $oMeasureCollectionBuilder = $audits->getAuditCollection();
 
         $filter = $request->input('filter', []);
-        if (!empty($filter['field']) && !empty($filter['value'])) {
-            $oMeasureCollectionBuilder->addLikeFilter($filter['field'], $filter['value']);
+        if (!empty($filter)) {
+            foreach ($filter as $fieldName => $value) {
+                $oMeasureCollectionBuilder->addLikeFilter($fieldName, $value);
+            }
         }
 
         $sort = $request->input('sort', []);

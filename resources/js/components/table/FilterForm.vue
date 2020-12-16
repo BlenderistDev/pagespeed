@@ -1,9 +1,7 @@
 <template lang="pug">
   .form-row
     .form-group.col-md-6
-      input(v-model="value" name="filter" class="form-control")
-    .form-group.col-md-6
-      button(v-on:click="setFilter(filter)" class="btn btn-primary") Отфильтровать
+      input(v-model="value" v-on:change="addFilter(filter)" name="filter")
 </template>
 
 <script>
@@ -26,7 +24,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setFilter'
+      'addFilter'
     ]),
   }
 }
