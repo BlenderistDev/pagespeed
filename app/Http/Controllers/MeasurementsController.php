@@ -37,10 +37,6 @@ class MeasurementsController extends Controller
         $onPage = $page['onPage'] ?? 10;
 
         return $oMeasureCollectionBuilder->getCollection($pageNumber, $onPage);
-        return [
-            'count' => $oMeasureCollectionBuilder->getCount(),
-            'measurements' => $oMeasureCollectionBuilder->getCollection($pageNumber, $onPage),
-        ];
     }
 
     /**

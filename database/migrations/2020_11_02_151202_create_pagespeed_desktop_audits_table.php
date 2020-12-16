@@ -19,8 +19,6 @@ class CreatePagespeedDesktopAuditsTable extends Migration
             $table->integer('audits_id');
             $table->integer('measurements_id');
             $table->string('value');
-            // $table->foreign('measurements_id')->references('id')->on('measurements');
-            // $table->foreign('audits_id')->references('id')->on('audits');
         });
     }
 

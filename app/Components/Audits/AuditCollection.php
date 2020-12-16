@@ -42,24 +42,6 @@ class AuditCollection
         return $this->measurements->count();
     }
 
-    public function parse(int $page, int $onPage): array
-    {
-        $count = $this->getCount();
-        $measurements = $this->getCollection($page, $onPage);
-
-        $aRes = [
-            'measurements' => $measurements->sortBy('domain'),
-            'count' => $count,
-            'services' => [],
-        ];
-
-        foreach($this->auditServices as $auditService) {
-            $aRes['services'][$auditService->getServiceName()]['audits'] = $auditService->parseServicesFromCollection($measurements);
-            $aRes['services'][$auditService->getServiceName()]['headers'] = $auditService->getAuditsFactory()->modelName()::all();
-        }
-        return $aRes;
-    }
-
     private function getServiceByName($serviceName): ?IAuditService
     {
         return $this->auditServices[$serviceName] ?? null;
