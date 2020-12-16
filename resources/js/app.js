@@ -8,7 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('measurements', require('./components/Measurements.vue').default);
 Vue.component('admin', require('./components/admin/admin.vue').default);
 
 

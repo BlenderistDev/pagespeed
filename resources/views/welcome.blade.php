@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="app">
-        <example-component></example-component>
+        <measurements />
     </div>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
