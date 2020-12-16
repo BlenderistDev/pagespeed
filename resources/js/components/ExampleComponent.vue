@@ -9,7 +9,7 @@
 
 <script>
   import MeasureForm from './MeasureForm.vue';
-  import MeasureTable from './MeasureTable.vue';
+  import MeasureTable from './table/MeasureTable.vue';
 
   export default {
     components: {
