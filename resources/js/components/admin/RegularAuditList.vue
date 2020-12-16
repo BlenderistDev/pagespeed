@@ -2,20 +2,20 @@
   div
     RegularAuditForm(:audit="currentAudit" 
       v-if="showForm"
-      v-on:item-created="updateList()" 
-      v-on:edit-started="editStarted()"
-      v-on:edit-ended="editEnded()"
+      @item-created="updateList()" 
+      @edit-started="editStarted()"
+      @edit-ended="editEnded()"
     )
     div(v-else)
-      button(v-on:click="showEditForm({})" class="btn btn-primary") Создать
+      button(@click="showEditForm({})" class="btn btn-primary") Создать
       table(class="table")
         thead
           th(v-for="(field) in fields") {{ field }}
         tbody
-          tr(v-for="audit in regularAuditList" v-bind:key="audit.id")
+          tr(v-for="audit in regularAuditList" :key="audit.id")
             td(v-for="(field, fieldKey) in fields") {{ audit[fieldKey] }}
             td
-              button(v-on:click="showEditForm(audit)" class="btn btn-primary") Редактировать
+              button(@click="showEditForm(audit)" class="btn btn-primary") Редактировать
 
 </template>
 

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    RegularAuditList(v-on:edit="editRegularAudit")
+    RegularAuditList(@edit="editRegularAudit")
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  span(v-on:click="sortClick()")
+  span(@click="sortClick()")
     slot
     span(v-if="sortField === columnName")
       span(v-if="sortWay === 'DESC'") &#8593;

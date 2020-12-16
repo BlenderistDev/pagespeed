@@ -5,7 +5,7 @@
       .form-group
         input(v-model="domain" class="form-control" placeholder="Domain")
         input(v-model="comment" class="form-control" placeholder="Comment")
-        button(v-on:click="addMeasure()" class="btn btn-primary") Отправить
+        button(@click="addMeasure()" class="btn btn-primary") Отправить
         PreLoader(ref="preloader")
 </template>
 

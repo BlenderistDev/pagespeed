@@ -12,11 +12,12 @@
 
       template(v-for="(serviceAudits, serviceKey) in audits")
         template(v-for="audit in serviceAudits")
-          th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col" :title="audit.description")
-            SortButtonAudit(
-              :auditId="audit.id"
-              :service="serviceKey"
-            ) {{ audit.name }}
+          transition(name="slide-fade")
+            th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col" :title="audit.description")
+              SortButtonAudit(
+                :auditId="audit.id"
+                :service="serviceKey"
+              ) {{ audit.name }}
 </template>
 
 <script>
@@ -39,3 +40,13 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  .slide-fade-enter-active, .slide-fade-leave-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+</style>

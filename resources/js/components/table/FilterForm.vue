@@ -1,7 +1,7 @@
 <template lang="pug">
   .form-row
     .form-group.col-md-6
-      input(v-model="value" v-on:change="addFilter(filter)" name="filter")
+      input(v-model="value" @change="addFilter(filter)" name="filter")
 </template>
 
 <script>

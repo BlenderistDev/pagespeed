@@ -3,7 +3,7 @@
     nav(aria-label='...')
       ul(class="pagination")
         li(v-for="n in getPageCount" :class="getClassForPage(n)")
-          a(class='page-link' v-on:click="setPage(n)")
+          a(class='page-link' @click="setPage(n)")
             |{{ n }}
 </template>
 

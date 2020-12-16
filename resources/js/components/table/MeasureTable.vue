@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-      div(v-for="(serviceAudits, serviceKey) in showColumns" v-bind:key="serviceKey")
+      div(v-for="(serviceAudits, serviceKey) in showColumns" :key="serviceKey")
         AuditFilter(:serviceKey="serviceKey")
-      button(v-on:click="fetchMeasurements()" class="btn btn-primary") Обновить
+      button(@click="fetchMeasurements()" class="btn btn-primary") Обновить
       .measure-table
         table(class="table table-striped table-bordered")
           MeasureTableHeader
@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .table {
     border: 1px solid;
   }

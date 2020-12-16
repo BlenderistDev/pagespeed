@@ -1,11 +1,11 @@
 <template lang="pug">
   form(class="was-uvalidated")
-    button(class="btn btn-outline-primary" v-on:click="$emit('edit-ended')") Назад
-    .form-group.row(v-for="(fieldName, fieldKey) in fields" v-bind:key="fieldKey")
+    button(class="btn btn-outline-primary" @click="$emit('edit-ended')") Назад
+    .form-group.row(v-for="(fieldName, fieldKey) in fields" :key="fieldKey")
       label(class='col-sm-2') {{fieldName}}
-      input(v-bind:class="getFieldClass(fieldKey)" v-model="audit[fieldKey]")
+      input(:class="getFieldClass(fieldKey)" v-model="audit[fieldKey]")
       div(v-if="errors[fieldKey]" class="invalid-feedback") {{ errors[fieldKey].join('') }}
-    button(class="btn btn-primary" v-on:click="sendRegularAudit") Отправить
+    button(class="btn btn-primary" @click="sendRegularAudit") Отправить
 
 </template>
 
