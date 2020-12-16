@@ -54687,7 +54687,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     fetchAuditResults: function fetchAuditResults(_ref4) {
       var commit = _ref4.commit,
-          dispatch = _ref4.dispatch,
           getters = _ref4.getters;
       return axios.post('/api/audit-results', {
         idList: getters.measurementsIdList

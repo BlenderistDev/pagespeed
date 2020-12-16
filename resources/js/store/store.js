@@ -3,7 +3,6 @@ export default {
     showColumns: {},
     audits: {},
     auditResults: {},
-
     sort: {
       field: 'created_at',
       way: 'DESC',
@@ -65,7 +64,7 @@ export default {
         dispatch('fetchAuditResults');
       })
     },
-    fetchAuditResults({commit, dispatch, getters}) {
+    fetchAuditResults({commit, getters}) {
       return axios.post('/api/audit-results', {
         idList: getters.measurementsIdList,
       }).then((response) => {
