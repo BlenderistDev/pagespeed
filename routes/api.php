@@ -23,15 +23,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('audits', [AuditsController::class, 'index']);
-Route::post('audit-results', [AuditResultsController::class, 'index']);
-
-Route::post('measurements', [MeasurementsController::class, 'index']);
-Route::post('measurements/store', [MeasurementsController::class, 'store']);
-
-Route::post('measurements/store', [MeasurementsController::class, 'store']);
-
 Route::middleware('auth:api')->group(function () {
+    Route::get('audits', [AuditsController::class, 'index']);
+    Route::post('audit-results', [AuditResultsController::class, 'index']);
+    
+    Route::post('measurements', [MeasurementsController::class, 'index']);
+    Route::post('measurements/store', [MeasurementsController::class, 'store']);
+    
+    Route::post('measurements/store', [MeasurementsController::class, 'store']);
+
     Route::put('regular-audits', [RegularAuditsController::class, 'store']);
     Route::get('regular-audits', [RegularAuditsController::class, 'index']);
     Route::get('regular-audits/{id}', [RegularAuditsController::class, 'show']);

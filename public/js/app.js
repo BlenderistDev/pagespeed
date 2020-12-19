@@ -2420,6 +2420,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['auditResults', 'measurements', 'showColumns', 'audits']))
@@ -2446,6 +2448,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -39703,6 +39708,15 @@ var render = function() {
         [
           _c("td", [_vm._v(_vm._s(measurement.domain))]),
           _c("td", [_vm._v(_vm._s(measurement.comment))]),
+          _c(
+            "td",
+            [
+              measurement.user
+                ? [_vm._v(_vm._s(measurement.user.name))]
+                : _vm._e()
+            ],
+            2
+          ),
           _c("td", [_vm._v(_vm._s(measurement.created_at))]),
           _vm._l(_vm.audits, function(serviceAudits, serviceKey) {
             return [
@@ -39800,6 +39814,12 @@ var render = function() {
               _vm._v("comment")
             ])
           ],
+          1
+        ),
+        _c(
+          "th",
+          { attrs: { scope: "col" } },
+          [_c("FilterForm", { attrs: { field: "user_id" } }), _vm._v("user")],
           1
         ),
         _c(

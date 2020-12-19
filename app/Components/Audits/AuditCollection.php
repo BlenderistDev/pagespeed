@@ -49,10 +49,11 @@ class AuditCollection
 
     private function getRelations(): array
     {
+        $relations = ['user'];
         foreach ($this->auditServices as $service) {
             $relations []= $service->getLinkName();
         }
-        return $relations ?? [];
+        return $relations;
     }
 
     private function addServiceSort(IAuditService $service, string $sortField, string $sortWay = 'ASC'): void

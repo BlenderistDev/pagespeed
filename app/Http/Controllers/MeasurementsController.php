@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Components\Audits\Audits;
-use App\Components\Audits\PageSpeed\MeasureCollectionBuilder;
 use App\Models\Measurements;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MeasurementsController extends Controller
 {
@@ -50,6 +50,7 @@ class MeasurementsController extends Controller
         $oMeasurements = new Measurements([
             'domain' => $request->input('domain'),
             'comment' => $request->input('comment'),
+            'user_id' => Auth::id(),
         ]);
         $oMeasurements->save();
     }

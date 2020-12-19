@@ -7,6 +7,9 @@
       th(scope="col") 
         FilterForm(field="comment")
         SortButton(columnName="comment") comment
+      th(scope="col") 
+        FilterForm(field="user_id")
+        |user
       th(scope="col")
         SortButton(columnName="created_at") created_at
 

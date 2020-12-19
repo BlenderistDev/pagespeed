@@ -3,6 +3,8 @@
     tr(v-for="measurement in measurements" :key="measurement.id")
       td {{ measurement.domain }}
       td {{ measurement.comment }}
+      td 
+       template(v-if="measurement.user") {{ measurement.user.name }}
       td {{ measurement.created_at }}
       template(v-for="(serviceAudits, serviceKey) in audits")
         template(v-for="(audit, auditKey) in serviceAudits")

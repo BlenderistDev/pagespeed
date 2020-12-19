@@ -16,7 +16,7 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    {{-- <script>window.Laravel = {csrfToken: '{{ csrf_token() }}'}</script> --}}
     <script>
         window.App = {!! json_encode([
             'apiToken' => Auth::user()->api_token ?? null,
