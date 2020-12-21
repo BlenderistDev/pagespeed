@@ -68,7 +68,7 @@ class AuditSaver
         if (!$auditId) {
             $audit = $this->auditFactory->create([
                 'name' => $auditName,
-                'description' => $auditsData['description'] ?? '',
+                'description' => $auditData['description'] ?? '',
             ]);
             $auditId = $audit->id;
         }

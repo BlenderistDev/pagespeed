@@ -31,9 +31,8 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
      *
      * @return void
      */
-    public function handle()
+    public function handle(Measurements $measurements)
     {
-        $measurements = new Measurements();
         $measurements->domain = $this->url;
         $measurements->comment = "regular audit";
         $measurements->save();
