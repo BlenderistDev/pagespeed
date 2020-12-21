@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Components\Audits\Audits;
-use App\Components\Audits\PageSpeed\MeasureCollectionBuilder;
 use App\Models\Measurements;
 
 use Illuminate\Http\Request;
@@ -15,9 +14,8 @@ class MeasurementsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Audits $audits)
     {
-        $audits = new Audits();
         $oMeasureCollectionBuilder = $audits->getAuditCollection();
 
         $filter = $request->input('filter', []);
@@ -43,14 +41,11 @@ class MeasurementsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Measurements  $measurements
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Measurements $measurements)
     {
-        $oMeasurements = new Measurements([
-            'domain' => $request->input('domain'),
-            'comment' => $request->input('comment'),
-        ]);
-        $oMeasurements->save();
+        $measurements->fill($request->only(['domain', 'comment']))->save();
     }
 }
