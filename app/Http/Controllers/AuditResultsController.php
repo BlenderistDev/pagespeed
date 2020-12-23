@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Components\Audits\AuditFacade;
-use App\Components\Audits\Audits;
 use Illuminate\Http\Request;
 
 class AuditResultsController extends Controller

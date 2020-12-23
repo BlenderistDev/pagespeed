@@ -11,7 +11,7 @@ class CronString implements Rule
     /**
      * Позиция атрибута в cron строке
      */
-    private $attributePosition = [
+    private array $attributePosition = [
         'minute' => 0,
         'hour' => 1,
         'month_day' => 2,
@@ -26,7 +26,7 @@ class CronString implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         $fieldFactory = new FieldFactory();
         $position = $this->attributePosition[$attribute] ?? false;

@@ -19,9 +19,9 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param string $url
      */
-    public function __construct(string $url) 
+    public function __construct(string $url)
     {
         $this->url = $url;
     }
@@ -29,6 +29,7 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
     /**
      * Execute the job.
      *
+     * @param Measurements $measurements
      * @return void
      */
     public function handle(Measurements $measurements)

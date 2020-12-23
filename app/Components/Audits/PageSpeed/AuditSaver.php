@@ -52,7 +52,7 @@ class AuditSaver
         foreach ($this->auditsData['lighthouseResult']['audits'] as $auditName => $audit) {
             if (!empty($audit['numericValue'])) {
                 $auditId = $this->getAuditIdByName($auditName, $audit);
-                $this->auditsToSave[$auditId] = $audit['numericValue'];                
+                $this->auditsToSave[$auditId] = $audit['numericValue'];
             }
         }
     }

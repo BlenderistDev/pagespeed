@@ -37,7 +37,7 @@ class Audits
     }
 
     /**
-     * @return IAudit[]
+     * @return IAuditService[]
      */
     private function getAuditServices(): array
     {

@@ -2,7 +2,6 @@
 
 namespace App\Components\Audits\PageSpeed;
 
-use App\Components\Audits\PageSpeed\PageSpeed;
 use App\Models\Audits;
 use App\Models\PageSpeedMobileAudits;
 use Database\Factories\AuditResultFactoryPrototype;
@@ -15,22 +14,22 @@ class MobilePageSpeed extends PageSpeed
         return "MOBILE";
     }
 
-    public function getAuditsFactory(): AuditsFactoryPrototype
+    protected function getAuditsFactory(): AuditsFactoryPrototype
     {
         return Audits::factory();
     }
 
-    public function getAuditResultFactory(): AuditResultFactoryPrototype
+    protected function getAuditResultFactory(): AuditResultFactoryPrototype
     {
         return PageSpeedMobileAudits::factory();
     }
 
-    public function getServiceName(): string
+    protected function getServiceName(): string
     {
         return 'mobile';
     }
 
-    public function getLinkName(): string
+    protected function getLinkName(): string
     {
         return 'measure';
     }
