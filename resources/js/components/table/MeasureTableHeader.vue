@@ -4,7 +4,7 @@
       th(scope="col")
         FilterForm(field="domain")
         SortButton(columnName="domain") domain
-      th(scope="col") 
+      th(scope="col")
         FilterForm(field="comment")
         SortButton(columnName="comment") comment
       th(scope="col")

@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('audits', [AuditsController::class, 'index']);
+Route::get('audits', [AuditsController::class, 'index'])->name('audits.index');;
 Route::post('audit-results', [AuditResultsController::class, 'index']);
 
 Route::post('measurements', [MeasurementsController::class, 'index']);
