@@ -11,21 +11,27 @@ class PageSpeedMobileAuditsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testServiceName()
+    private $model;
+
+    protected function setUp(): void
     {
-        $audit = new PageSpeedMobileAudits();
-        $this->assertNotEmpty($audit->getServiceName());
-        $this->assertIsString($audit->getServiceName());
-        $this->assertEquals($audit->getServiceName(), 'mobile');
+        $this->model = new PageSpeedMobileAudits();
+        parent::setUp();
     }
 
-    public function testGetHeadersReturnAllHeaders()
+    public function testServiceName(): void
+    {
+        $this->assertNotEmpty($this->model->getServiceName());
+        $this->assertIsString($this->model->getServiceName());
+        $this->assertEquals($this->model->getServiceName(), 'mobile');
+    }
+
+    public function testGetHeaders(): void
     {
         $headersCount = 10;
         Audits::factory()->count($headersCount)->create();
 
-        $audit = new PageSpeedMobileAudits();
-        $this->assertContainsOnlyInstancesOf(Audits::class , $audit->getHeaders());
-        $this->assertCount($headersCount, $audit->getHeaders());
+        $this->assertContainsOnlyInstancesOf(Audits::class , $this->model->getHeaders());
+        $this->assertCount($headersCount, $this->model->getHeaders());
     }
 }

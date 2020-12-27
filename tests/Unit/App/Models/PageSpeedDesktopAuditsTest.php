@@ -11,21 +11,27 @@ class PageSpeedDesktopAuditsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testServiceName()
+    private $model;
+
+    protected function setUp(): void
     {
-        $audit = new PageSpeedDesktopAudits();
-        $this->assertNotEmpty($audit->getServiceName());
-        $this->assertIsString($audit->getServiceName());
-        $this->assertEquals($audit->getServiceName(), 'desktop');
+        $this->model = new PageSpeedDesktopAudits();
+        parent::setUp();
     }
 
-    public function testGetHeadersReturnAllHeaders()
+    public function testServiceName(): void
+    {
+        $this->assertNotEmpty($this->model->getServiceName());
+        $this->assertIsString($this->model->getServiceName());
+        $this->assertEquals($this->model->getServiceName(), 'desktop');
+    }
+
+    public function testGetHeaders():void
     {
         $headersCount = 10;
         DesktopAudits::factory()->count($headersCount)->create();
 
-        $audit = new PageSpeedDesktopAudits();
-        $this->assertContainsOnlyInstancesOf(DesktopAudits::class , $audit->getHeaders());
-        $this->assertCount($headersCount, $audit->getHeaders());
+        $this->assertContainsOnlyInstancesOf(DesktopAudits::class , $this->model->getHeaders());
+        $this->assertCount($headersCount, $this->model->getHeaders());
     }
 }
