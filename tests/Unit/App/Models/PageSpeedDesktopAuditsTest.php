@@ -26,12 +26,34 @@ class PageSpeedDesktopAuditsTest extends TestCase
         $this->assertEquals($this->model->getServiceName(), 'desktop');
     }
 
-    public function testGetHeaders():void
+    public function testGetHeaders(): void
     {
         $headersCount = 10;
         DesktopAudits::factory()->count($headersCount)->create();
 
         $this->assertContainsOnlyInstancesOf(DesktopAudits::class , $this->model->getHeaders());
         $this->assertCount($headersCount, $this->model->getHeaders());
+    }
+
+    public function testAudit(): void
+    {
+        $auditResult = PageSpeedDesktopAudits::factory()->has(DesktopAudits::factory(), 'audit')->create();
+        $this->assertNotEmpty($auditResult->audit);
+        $this->assertInstanceOf(DesktopAudits::class ,$auditResult->audit);
+    }
+
+    public function testScopeByMeausrements(): void
+    {
+        $correctMeasurementId = 2;
+        $correctResultsCount = 5;
+        $wrongMeasurementId = 4;
+        PageSpeedDesktopAudits::factory()->withMeausureId($correctMeasurementId)->count($correctResultsCount)->create();
+        PageSpeedDesktopAudits::factory()->withMeausureId($wrongMeasurementId)->count(2)->create();
+
+        $auditResults = PageSpeedDesktopAudits::byMeausrements([2])->get();
+        $this->assertCount($correctResultsCount, $auditResults);
+        foreach ($auditResults as $auditResult) {
+            $this->assertEquals($correctMeasurementId, $auditResult->measurements_id);
+        }
     }
 }

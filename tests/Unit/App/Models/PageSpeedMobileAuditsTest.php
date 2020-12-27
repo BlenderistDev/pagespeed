@@ -34,4 +34,26 @@ class PageSpeedMobileAuditsTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Audits::class , $this->model->getHeaders());
         $this->assertCount($headersCount, $this->model->getHeaders());
     }
+
+    public function testAudit(): void
+    {
+        $auditResult = PageSpeedMobileAudits::factory()->has(Audits::factory(), 'audit')->create();
+        $this->assertNotEmpty($auditResult->audit);
+        $this->assertInstanceOf(Audits::class ,$auditResult->audit);
+    }
+
+    public function testScopeByMeausrements(): void
+    {
+        $correctMeasurementId = 2;
+        $correctResultsCount = 5;
+        $wrongMeasurementId = 4;
+        PageSpeedMobileAudits::factory()->withMeausureId($correctMeasurementId)->count($correctResultsCount)->create();
+        PageSpeedMobileAudits::factory()->withMeausureId($wrongMeasurementId)->count(2)->create();
+
+        $auditResults = PageSpeedMobileAudits::byMeausrements([2])->get();
+        $this->assertCount($correctResultsCount, $auditResults);
+        foreach ($auditResults as $auditResult) {
+            $this->assertEquals($correctMeasurementId, $auditResult->measurements_id);
+        }
+    }
 }
