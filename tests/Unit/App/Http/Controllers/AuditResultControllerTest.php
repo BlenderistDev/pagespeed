@@ -13,4 +13,12 @@ class AuditResultControllerTest extends TestCase
     {
         $this->post('/api/audit-results')->assertOk();
     }
+
+    public function testAllServicesInResponse()
+    {
+        $this->post('/api/audit-results')->assertJsonStructure([
+            'mobile' => [],
+            'desktop' => [],
+        ]);
+    }
 }

@@ -43,9 +43,27 @@ abstract class AuditResultFactoryPrototype extends Factory
     {
         $faker = Faker\Factory::create();
         return [
-            'audits_id' => 0,
+            'audits_id' => $faker->randomDigit,
             'value' => $faker->randomDigit,
-            'measurements_id' => 0,
+            'measurements_id' => $faker->randomDigit,
         ];
+    }
+
+    public function withMeausureId(int $measureId): self
+    {
+        return $this->state(function (array $attributes) use ($measureId) {
+            return [
+                'measurements_id' => $measureId,
+            ];
+        });
+    }
+
+    public function withUniqueAuditId(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'audits_id' => $this->faker->unique()->randomDigit,
+            ];
+        });
     }
 }

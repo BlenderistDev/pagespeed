@@ -19,7 +19,7 @@ class MobilePageSpeed extends PageSpeed
         return Audits::factory();
     }
 
-    protected function getAuditResultFactory(): AuditResultFactoryPrototype
+    public function getAuditResultFactory(): AuditResultFactoryPrototype
     {
         return PageSpeedMobileAudits::factory();
     }
@@ -29,7 +29,7 @@ class MobilePageSpeed extends PageSpeed
         return 'mobile';
     }
 
-    protected function getLinkName(): string
+    public function getLinkName(): string
     {
         return 'measure';
     }

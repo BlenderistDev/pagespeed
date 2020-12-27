@@ -19,7 +19,7 @@ class DesktopPageSpeed extends PageSpeed
         return DesktopAudits::factory();
     }
 
-    protected function getAuditResultFactory(): AuditResultFactoryPrototype
+    public function getAuditResultFactory(): AuditResultFactoryPrototype
     {
         return PageSpeedDesktopAudits::factory();
     }
@@ -29,7 +29,7 @@ class DesktopPageSpeed extends PageSpeed
         return 'desktop';
     }
 
-    protected function getLinkName(): string
+    public function getLinkName(): string
     {
         return 'measureDesktop';
     }

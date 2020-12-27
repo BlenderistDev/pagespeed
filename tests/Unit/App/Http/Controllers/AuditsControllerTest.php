@@ -16,8 +16,7 @@ class AuditsControllerTest extends TestCase
 
     public function testAllServicesInResponse()
     {
-        $response = $this->get('/api/audits');
-        $response->assertJsonStructure([
+        $this->get('/api/audits')->assertJsonStructure([
             'mobile' => [],
             'desktop' => [],
         ]);

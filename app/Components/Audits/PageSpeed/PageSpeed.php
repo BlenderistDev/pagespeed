@@ -43,13 +43,13 @@ abstract class PageSpeed implements IAuditService
         return $audits;
     }
 
-    protected abstract function getAuditResultFactory(): AuditResultFactoryPrototype;
+    public abstract function getAuditResultFactory(): AuditResultFactoryPrototype;
 
     protected abstract function getAuditsFactory(): AuditsFactoryPrototype;
 
     protected abstract function getStrategy(): string;
 
-    protected abstract function getLinkName(): string;
+    public abstract function getLinkName(): string;
 
     private function getKey(): string
     {

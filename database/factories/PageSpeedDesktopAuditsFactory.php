@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\PageSpeedDesktopAudits;
+use Faker;
 
 class PageSpeedDesktopAuditsFactory extends AuditResultFactoryPrototype
 {
@@ -11,5 +12,5 @@ class PageSpeedDesktopAuditsFactory extends AuditResultFactoryPrototype
      *
      * @var string
      */
-    protected $model = PageSpeedDesktopAudits::class; 
+    protected $model = PageSpeedDesktopAudits::class;
 }
