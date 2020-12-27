@@ -16,13 +16,16 @@ class PageSpeedDesktopAuditsTest extends TestCase
         $audit = new PageSpeedDesktopAudits();
         $this->assertNotEmpty($audit->getServiceName());
         $this->assertIsString($audit->getServiceName());
+        $this->assertEquals($audit->getServiceName(), 'desktop');
     }
 
-    public function testGetHeaders()
+    public function testGetHeadersReturnAllHeaders()
     {
+        $headersCount = 10;
+        DesktopAudits::factory()->count($headersCount)->create();
+
         $audit = new PageSpeedDesktopAudits();
-        DesktopAudits::factory()->count(5)->create();
-        $headers = $audit->getHeaders();
-        $this->assertContainsOnlyInstancesOf(DesktopAudits::class , $headers);
+        $this->assertContainsOnlyInstancesOf(DesktopAudits::class , $audit->getHeaders());
+        $this->assertCount($headersCount, $audit->getHeaders());
     }
 }
