@@ -36,4 +36,38 @@ class MeasurementsControllerTest extends TestCase
         Measurements::factory()->count($total)->create();
         $this->post('/api/measurements')->assertJsonFragment(['total' => $total]);
     }
+
+    public function testFilterByDomain()
+    {
+        $total = 20;
+        $domain = 'https://google.com';
+        Event::fake();
+        Measurements::factory()->count($total)->create();
+        Measurements::factory()->domain($domain)->count($total)->create();
+        $response = $this->post('/api/measurements', [
+            'filter' => [
+                'domain' => $domain,
+            ],
+        ])->json();
+        foreach ($response['data'] as $item) {
+            $this->assertStringContainsString($domain, $item['domain']);
+        }
+    }
+
+    public function testFilterByComment()
+    {
+        $total = 20;
+        $comment = 'test_comment';
+        Event::fake();
+        Measurements::factory()->count($total)->create();
+        Measurements::factory()->comment($comment)->count($total)->create();
+        $response = $this->post('/api/measurements', [
+            'filter' => [
+                'comment' => $comment,
+            ],
+        ])->json();
+        foreach ($response['data'] as $item) {
+            $this->assertStringContainsString($comment, $item['comment']);
+        }
+    }
 }

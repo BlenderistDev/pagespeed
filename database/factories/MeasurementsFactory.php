@@ -15,6 +15,24 @@ class MeasurementsFactory extends Factory
      */
     protected $model = Measurements::class;
 
+    public function domain(string $domain): self
+    {
+        return $this->state(function (array $attributes) use ($domain) {
+            return [
+                'domain' => $domain,
+            ];
+        });
+    }
+
+    public function comment(string $comment): self
+    {
+        return $this->state(function (array $attributes) use ($comment) {
+            return [
+                'comment' => $comment,
+            ];
+        });
+    }
+
     /**
      * Define the model's default state.
      *
