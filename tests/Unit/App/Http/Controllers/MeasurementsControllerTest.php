@@ -2,13 +2,14 @@
 
 namespace Tests\Unit\App\Http\Controllers;
 
-use App\Components\Audits\PageSpeed\DesktopPageSpeed;
 use App\Models\Measurements;
 use App\Models\PageSpeedDesktopAudits;
 use App\Models\PageSpeedMobileAudits;
+use App\Observers\MeasurementObserver;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
+use Faker;
 
 class MeasurementsControllerTest extends TestCase
 {
@@ -211,5 +212,25 @@ class MeasurementsControllerTest extends TestCase
         });
 
         $this->assertEquals(collect($response)->pluck('id'), $items->pluck('id'));
+    }
+
+    public function testStore()
+    {
+        $faker = Faker\Factory::create();
+        $domain = $faker->url;
+        $comment = $faker->word;
+        Event::fake();
+
+        $this->post('/api/measurements/store', [
+            'domain' => $domain,
+            'comment' => $comment
+        ])->assertOk();
+
+        $this->assertDatabaseHas('measurements', [
+            'domain' => $domain,
+            'comment' => $comment
+        ]);
+
+        $this->assertDatabaseCount('measurements', 1);
     }
 }
