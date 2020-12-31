@@ -25,7 +25,7 @@ class RegularAuditsController extends Controller
      * @param RegularAuditsPost $request
      * @return Response
      */
-    public function store(RegularAuditsPost $request)
+    public function store(RegularAuditsPost $request): Response
     {
         if ($request->validated()) {
             RegularAudits::updateOrCreate(['id' =>$request->input('id')], $request->all());
