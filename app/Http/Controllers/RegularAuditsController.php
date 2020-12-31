@@ -12,7 +12,7 @@ class RegularAuditsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Collection
      */
     public function index(): Collection
     {
