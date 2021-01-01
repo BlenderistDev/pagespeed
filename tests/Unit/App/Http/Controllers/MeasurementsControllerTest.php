@@ -212,4 +212,12 @@ class MeasurementsControllerTest extends TestCase
 
         $this->assertEquals(collect($response)->pluck('id'), $items->pluck('id'));
     }
+
+    public function testStore()
+    {
+        Event::fake();
+        $measurement = Measurements::factory()->makeOne();
+        $this->post('/api/measurements/store', $measurement->attributesToArray());
+        $this->assertDatabaseHas('measurements', $measurement->attributesToArray());
+    }
 }

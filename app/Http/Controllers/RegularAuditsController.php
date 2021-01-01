@@ -23,9 +23,8 @@ class RegularAuditsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param RegularAuditsPost $request
-     * @return Response
      */
-    public function store(RegularAuditsPost $request): Response
+    public function store(RegularAuditsPost $request)
     {
         if ($request->validated()) {
             RegularAudits::updateOrCreate(['id' =>$request->input('id')], $request->all());
