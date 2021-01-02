@@ -17,6 +17,7 @@ class AuditsFactoryPrototype extends Factory
         $faker = Faker\Factory::create();
         return [
             'name' => $faker->word(),
+            'title' => $faker->word(),
             'description' => $faker->words(3, true),
         ];
     }

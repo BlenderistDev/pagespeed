@@ -33,7 +33,9 @@ class AuditSaver
     private function addScoreAudit(): void
     {
         $auditName = 'score';
-        $auditId = $this->getAuditIdByName($auditName);
+        $auditId = $this->getAuditIdByName($auditName, [
+            'title' => 'Общие очки',
+        ]);
         $this->auditsToSave[$auditId] = $this->auditsData['lighthouseResult']['categories']['performance']['score'];
     }
 
@@ -68,6 +70,7 @@ class AuditSaver
         if (!$auditId) {
             $audit = $this->auditFactory->create([
                 'name' => $auditName,
+                'title' => $auditData['title'] ?? '',
                 'description' => $auditData['description'] ?? '',
             ]);
             $auditId = $audit->id;

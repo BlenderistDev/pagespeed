@@ -17,7 +17,7 @@
               SortButtonAudit(
                 :auditId="audit.id"
                 :service="serviceKey"
-              ) {{ audit.name }}
+              ) {{ audit.title }}
 </template>
 
 <script>

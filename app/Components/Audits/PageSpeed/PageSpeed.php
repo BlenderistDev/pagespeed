@@ -15,6 +15,8 @@ abstract class PageSpeed implements IAuditService
 {
     private const PAGESPEED_API_LINK = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
 
+    private const Locate = 'ru';
+
     public function makeAudit(string $url, int $iMeasureId, LoopInterface &$loop): PromiseInterface
     {
         $key = $this->getKey();
@@ -22,7 +24,7 @@ abstract class PageSpeed implements IAuditService
         $auditFactory = $this->getAuditsFactory();
         $strategy = $this->getStrategy();
         $browser = (new Browser($loop))->withTimeout(180);
-        return $browser->get(self::PAGESPEED_API_LINK . "?url=$url&key=$key&strategy=$strategy")
+        return $browser->get(self::PAGESPEED_API_LINK . "?url=$url&key=$key&strategy=$strategy&locale=" . self::Locate)
             ->then(function(ResponseInterface $response) use ($auditFactory, $auditResultFactory) {
                 $aResults = json_decode($response->getBody()->getContents(), true);
                 AuditSaver::makeGooglePageSpeedAudits($aResults, $auditFactory, $auditResultFactory);
