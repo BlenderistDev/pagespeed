@@ -37,11 +37,6 @@ class AuditCollection
         $this->measurements->where($filterField, 'LIKE', "%$value%");
     }
 
-    public function getCount(): int
-    {
-        return $this->measurements->count();
-    }
-
     private function getServiceByName($serviceName): ?IAuditService
     {
         return $this->auditServices[$serviceName] ?? null;

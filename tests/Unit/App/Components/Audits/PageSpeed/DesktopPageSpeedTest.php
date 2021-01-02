@@ -3,10 +3,13 @@
 namespace Tests\Unit;
 
 use App\Components\Audits\PageSpeed\DesktopPageSpeed;
-use App\Models\DesktopAudits;
+use App\Components\Audits\PageSpeed\PageSpeedRequestFacade;
 use App\Models\PageSpeedDesktopAudits;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use React\Promise\Deferred;
+use React\EventLoop;
+use function Clue\React\Block\await;
 
 class DesktopPageSpeedTest extends TestCase
 {
@@ -32,5 +35,38 @@ class DesktopPageSpeedTest extends TestCase
         $desktopAudits = new DesktopPageSpeed();
         $auditResults = $desktopAudits->getAuditResults([$measureId]);
         $this->assertCount($resultCount, $auditResults[$measureId]);
+    }
+
+    public function testMakeDesktopAudit()
+    {
+        $deferred = new Deferred();
+        $promise = $deferred->promise();
+        $deferred->resolve(json_decode(file_get_contents(__DIR__ . '/PageSpeedResponseSample.json'), true));
+        PageSpeedRequestFacade::shouldReceive('makeAuditRequest')->once()->andReturn($promise);
+
+        $loop = EventLoop\Factory::create();
+        $audit = new DesktopPageSpeed();
+        await($audit->makeAudit('https://mebelverona.ru', 1, $loop), $loop);
+
+        $this->assertDatabaseHas('desktop_audits', []);
+        $this->assertDatabaseHas('page_speed_desktop_audits', []);
+    }
+
+    public function testLinkName(): void
+    {
+        $desktopPageSpeed = new DesktopPageSpeed();
+        $this->assertEquals('measureDesktop', $desktopPageSpeed->getLinkName());
+    }
+
+    public function testRequestException(): void
+    {
+        $deferred = new Deferred();
+        $promise = $deferred->promise();
+        $deferred->reject('error');
+        PageSpeedRequestFacade::shouldReceive('makeAuditRequest')->once()->andReturn($promise);
+        $this->expectException(\Exception::class);
+        $loop = EventLoop\Factory::create();
+        $audit = new DesktopPageSpeed();
+        await($audit->makeAudit('https://mebelverona.ru', 1, $loop), $loop);
     }
 }

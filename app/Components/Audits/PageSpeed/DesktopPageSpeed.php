@@ -24,11 +24,6 @@ class DesktopPageSpeed extends PageSpeed
         return PageSpeedDesktopAudits::factory();
     }
 
-    protected function getServiceName(): string
-    {
-        return 'desktop';
-    }
-
     public function getLinkName(): string
     {
         return 'measureDesktop';

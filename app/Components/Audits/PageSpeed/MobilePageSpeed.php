@@ -24,11 +24,6 @@ class MobilePageSpeed extends PageSpeed
         return PageSpeedMobileAudits::factory();
     }
 
-    protected function getServiceName(): string
-    {
-        return 'mobile';
-    }
-
     public function getLinkName(): string
     {
         return 'measure';
