@@ -216,21 +216,9 @@ class MeasurementsControllerTest extends TestCase
 
     public function testStore()
     {
-        $faker = Faker\Factory::create();
-        $domain = $faker->url;
-        $comment = $faker->word;
         Event::fake();
-
-        $this->post('/api/measurements/store', [
-            'domain' => $domain,
-            'comment' => $comment
-        ])->assertOk();
-
-        $this->assertDatabaseHas('measurements', [
-            'domain' => $domain,
-            'comment' => $comment
-        ]);
-
-        $this->assertDatabaseCount('measurements', 1);
+        $measurement = Measurements::factory()->makeOne();
+        $this->post('/api/measurements/store', $measurement->attributesToArray());
+        $this->assertDatabaseHas('measurements', $measurement->attributesToArray());
     }
 }

@@ -31,6 +31,12 @@ class CronStringTest extends TestCase
         $cronStringRule->passes('something', '*');
     }
 
+    public function testIncorrectMessage()
+    {
+        $cronStringRule = new CronString();
+        $this->assertEquals('Некорректное значение', $cronStringRule->message());
+    }
+
     /**
      * Для каждого элемента cron строки
      * Указывается максимальное допустимое значение

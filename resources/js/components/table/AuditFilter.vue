@@ -10,7 +10,7 @@
             :value="item.name"
             @change="updateShowColumns()"
           )
-          label(class="form-check-label") {{item.name}}
+          label(class="form-check-label") {{item.title}}
 </template>
 
 <script>

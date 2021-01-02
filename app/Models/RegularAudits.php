@@ -14,7 +14,7 @@ class RegularAudits extends Model
     use ManagesFrequencies;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    
+
     public function getCronStringAttribute(): string
     {
         return "{$this->minute} {$this->hour} {$this->month_day} {$this->month} {$this->week_day}";
