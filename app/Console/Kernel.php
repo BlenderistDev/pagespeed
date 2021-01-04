@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function() {
             RegularAudits::all()->each(function(RegularAudits $regularAudit) {
-                MakeAudit::dispatchIf($regularAudit->isDue(), $regularAudit->url);
+                MakeAudit::dispatchIf($regularAudit->isDue(), $regularAudit->url, $regularAudit->email);
             });
         })->everyMinute();
     }
