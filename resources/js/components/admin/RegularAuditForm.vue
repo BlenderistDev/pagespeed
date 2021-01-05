@@ -24,6 +24,7 @@ export default {
         month_day: "Число месяца",
         month: "Месяц",
         week_day: "День недели",
+        email: "Email для отправки результатов",
       },
       errors: {},
       formValidated: false,
