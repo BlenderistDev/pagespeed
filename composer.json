@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "clue/block-react": "^1.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -16,7 +16,6 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.1",
-        "philcook/gtmetrix": "^1.0",
         "phpunit/php-code-coverage": "^9.2",
         "react/event-loop": "^1.1.1",
         "react/http": "^1.1",

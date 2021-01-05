@@ -18,7 +18,7 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
 
     private string $url = '';
 
-    private array $email;
+    private array $email = [];
 
     /**
      * Create a new job instance.
