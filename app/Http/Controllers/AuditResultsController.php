@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AuditResultsController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): array
     {
         $measureIdList = $request->input('idList', []);
         return AuditFacade::getAuditResults($measureIdList);

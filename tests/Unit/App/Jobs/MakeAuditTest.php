@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\App\Jobs;
 
 use App\Jobs\MakeAudit;
 use App\Mail\RegularAuditComplete;
@@ -21,13 +21,13 @@ class MakeAuditTest extends TestCase
         parent::setUp();
     }
 
-    public function testGetUniqueId()
+    public function testGetUniqueId(): void
     {
         $job = new MakeAudit($this->url);
         $this->assertEquals($this->url, $job->uniqueId());
     }
 
-    public function testJobHandle()
+    public function testJobHandle(): void
     {
         Event::fake();
         MakeAudit::dispatch($this->url);
@@ -36,7 +36,7 @@ class MakeAuditTest extends TestCase
         ]);
     }
 
-    public function testResultsEmailSend()
+    public function testResultsEmailSend(): void
     {
         Event::fake();
         Mail::fake();
@@ -45,7 +45,7 @@ class MakeAuditTest extends TestCase
         Mail::assertSent(RegularAuditComplete::class);
     }
 
-    public function testResultsEmailNotSendWithoutEmail()
+    public function testResultsEmailNotSendWithoutEmail(): void
     {
         Event::fake();
         Mail::fake();

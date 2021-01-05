@@ -7,7 +7,7 @@ use App\Models\DesktopAudits;
 
 class AuditsController extends Controller
 {
-    public function index()
+    public function index(): array
     {
         return [
             'desktop' => DesktopAudits::all(),

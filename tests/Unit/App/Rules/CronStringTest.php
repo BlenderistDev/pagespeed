@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Rules;
 
 use App\Exceptions\CronStringException;
 use App\Rules\CronString;
@@ -11,7 +11,7 @@ class CronStringTest extends TestCase
     /**
      * @dataProvider CronStringsProvider
      */
-    public function testPasses($attribute, $max)
+    public function testPasses($attribute, $max): void
     {
         $cronStringRule = new CronString();
         $this->assertTrue($cronStringRule->passes($attribute, '1'));
@@ -24,14 +24,14 @@ class CronStringTest extends TestCase
         $this->assertFalse($cronStringRule->passes($attribute, '-4'));
     }
 
-    public function testPassesNotInList()
+    public function testPassesNotInList(): void
     {
         $cronStringRule = new CronString();
         $this->expectException(CronStringException::class);
         $cronStringRule->passes('something', '*');
     }
 
-    public function testIncorrectMessage()
+    public function testIncorrectMessage(): void
     {
         $cronStringRule = new CronString();
         $this->assertEquals('Некорректное значение', $cronStringRule->message());
@@ -41,7 +41,7 @@ class CronStringTest extends TestCase
      * Для каждого элемента cron строки
      * Указывается максимальное допустимое значение
      */
-    public function CronStringsProvider()
+    public function CronStringsProvider(): array
     {
         return [
             ['minute', 59],

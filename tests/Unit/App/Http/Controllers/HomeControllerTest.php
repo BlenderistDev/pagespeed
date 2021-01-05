@@ -9,7 +9,7 @@ class HomeControllerTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testIndexResponseOk()
+    public function testIndexResponseOk(): void
     {
         $this->withoutMiddleware();
         $this->get('/home')->assertOk();

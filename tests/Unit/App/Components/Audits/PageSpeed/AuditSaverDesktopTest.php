@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\App\Components\Audits\PageSpeed;
 
 use App\Components\Audits\PageSpeed\AuditSaver;
 use App\Models\DesktopAudits;

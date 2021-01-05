@@ -13,9 +13,7 @@ class MeasurementsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private $model;
-
-    public function testMeasure()
+    public function testMeasure(): void
     {
         Event::fake();
         $auditCount = 4;
@@ -26,7 +24,7 @@ class MeasurementsTest extends TestCase
         $this->assertCount($auditCount, $measurement->measure);
     }
 
-    public function testMeasureDesktop()
+    public function testMeasureDesktop(): void
     {
         Event::fake();
         $auditCount = 6;

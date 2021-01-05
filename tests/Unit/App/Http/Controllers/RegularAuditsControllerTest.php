@@ -11,19 +11,19 @@ class RegularAuditsControllerTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testIndexResponseOk()
+    public function testIndexResponseOk(): void
     {
         $this->withoutMiddleware();
         $this->get('/api/regular-audits')->assertOk();
     }
 
-    public function testOnlyAuthAccess()
+    public function testOnlyAuthAccess(): void
     {
         $this->getJson('/api/regular-audits')->assertUnauthorized();
         $this->putJson('/api/regular-audits')->assertUnauthorized();
     }
 
-    public function testIndex()
+    public function testIndex(): void
     {
         $faker = Faker\Factory::create();
         $count = $faker->randomDigit;
@@ -32,7 +32,7 @@ class RegularAuditsControllerTest extends TestCase
         $this->get('/api/regular-audits')->assertJsonCount($count);
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $this->withoutMiddleware();
         $regularAudit = RegularAudits::factory()->stars()->make();

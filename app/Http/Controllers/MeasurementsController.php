@@ -6,46 +6,34 @@ use App\Components\Audits\AuditFacade;
 use App\Models\Measurements;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class MeasurementsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): Collection
     {
-        $oMeasureCollectionBuilder = AuditFacade::getAuditCollection();
+        $measureCollectionBuilder = AuditFacade::getAuditCollection();
 
         $filter = $request->input('filter', []);
         if (!empty($filter)) {
             foreach ($filter as $fieldName => $value) {
-                $oMeasureCollectionBuilder->addLikeFilter($fieldName, $value);
+                $measureCollectionBuilder->addLikeFilter($fieldName, $value);
             }
         }
 
         $sort = $request->input('sort', []);
         if (!empty($sort['field']) && !empty($sort['way'])) {
-            $oMeasureCollectionBuilder->addSorting($sort['service'] ?? '', $sort['field'], $sort['way']);
+            $measureCollectionBuilder->addSorting($sort['service'] ?? '', $sort['field'], $sort['way']);
         }
 
         $page = $request->input('page');
         $pageNumber = $page['page'] ?? 1;
         $onPage = $page['onPage'] ?? 10;
 
-        return $oMeasureCollectionBuilder->getCollection($pageNumber, $onPage);
+        return $measureCollectionBuilder->getCollection($pageNumber, $onPage);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Http\Measurements  $measurements
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Measurements $measurements)
+    public function store(Request $request, Measurements $measurements): void
     {
         $measurements->fill($request->only(['domain', 'comment']))->save();
     }

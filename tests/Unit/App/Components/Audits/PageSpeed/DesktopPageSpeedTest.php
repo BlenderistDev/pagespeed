@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\App\Components\Audits\PageSpeed;
 
 use App\Components\Audits\PageSpeed\DesktopPageSpeed;
 use App\Components\Audits\PageSpeed\PageSpeedRequestFacade;
@@ -15,7 +15,7 @@ class DesktopPageSpeedTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testGetAuditResults()
+    public function testGetAuditResults(): void
     {
         PageSpeedDesktopAudits::factory()->withMeausureId(1)->create();
         PageSpeedDesktopAudits::factory()->withMeausureId(2)->create();
@@ -37,7 +37,7 @@ class DesktopPageSpeedTest extends TestCase
         $this->assertCount($resultCount, $auditResults[$measureId]);
     }
 
-    public function testMakeDesktopAudit()
+    public function testMakeDesktopAudit(): void
     {
         $deferred = new Deferred();
         $promise = $deferred->promise();

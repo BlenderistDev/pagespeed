@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -19,7 +20,7 @@ abstract class ServiceAuditsPrototype extends Model
 
     abstract public function getHeaders(): Collection;
 
-    public function scopeByMeausrements($query, array $measurementIdList)
+    public function scopeByMeausrements(Builder $query, array $measurementIdList): Builder
     {
         return $query->whereIn('measurements_id', $measurementIdList);
     }

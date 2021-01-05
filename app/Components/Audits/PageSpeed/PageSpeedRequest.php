@@ -13,7 +13,7 @@ class PageSpeedRequest
 
     private const Locate = 'ru';
 
-    public static function makeAuditRequest(LoopInterface &$loop, string $url, $strategy): PromiseInterface
+    public static function makeAuditRequest(LoopInterface &$loop, string $url, string $strategy): PromiseInterface
     {
         $key = self::getKey();
         $browser = (new Browser($loop))->withTimeout(180);

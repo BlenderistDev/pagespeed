@@ -23,6 +23,7 @@ class RegularAudits extends Model
     public function isDue(): bool
     {
         $date = Carbon::now();
-        return CronExpression::factory($this->cron_string)->isDue($date->toDateTimeString());
+        $cronExpression = new CronExpression($this->cron_string);
+        return $cronExpression->isDue($date->toDateTimeString());
     }
 }

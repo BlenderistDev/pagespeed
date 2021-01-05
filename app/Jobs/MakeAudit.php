@@ -16,8 +16,6 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private string $url = '';
-
     private array $email = [];
 
     /**
@@ -25,9 +23,8 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
      *
      * @param string $url
      */
-    public function __construct(string $url, string $email = '')
+    public function __construct(private string $url, string $email = '')
     {
-        $this->url = $url;
         if ($email) {
             $this->email = explode(',', $email);
         }
@@ -39,7 +36,7 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
      * @param Measurements $measurements
      * @return void
      */
-    public function handle(Measurements $measurements)
+    public function handle(Measurements $measurements): void
     {
         $measurements->domain = $this->url;
         $measurements->comment = "regular audit";

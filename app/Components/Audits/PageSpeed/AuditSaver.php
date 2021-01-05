@@ -9,13 +9,9 @@ class AuditSaver
 {
     private $existingAuditNames;
 
-    private $auditsData;
-
     private $auditsToSave = [];
 
-    private AuditsFactoryPrototype $auditFactory;
-
-    public static function makeGooglePageSpeedAudits(array $auditsData, AuditsFactoryPrototype $auditFactory, AuditResultFactoryPrototype $auditResultFactory)
+    public static function makeGooglePageSpeedAudits(array $auditsData, AuditsFactoryPrototype $auditFactory, AuditResultFactoryPrototype $auditResultFactory): void
     {
         $auditSaver = new self($auditsData, $auditFactory);
         $auditSaver->addScoreAudit();
@@ -23,10 +19,8 @@ class AuditSaver
         $auditSaver->saveAudits($auditResultFactory);
     }
 
-    private function __construct(array $auditsData, AuditsFactoryPrototype $auditFactory)
+    private function __construct(private array $auditsData, private AuditsFactoryPrototype $auditFactory)
     {
-        $this->auditsData = $auditsData;
-        $this->auditFactory = $auditFactory;
         $this->setExistingAuditsNames();
     }
 
@@ -39,7 +33,7 @@ class AuditSaver
         $this->auditsToSave[$auditId] = $this->auditsData['lighthouseResult']['categories']['performance']['score'];
     }
 
-    private function saveAudits(AuditResultFactoryPrototype $auditResultFactory)
+    private function saveAudits(AuditResultFactoryPrototype $auditResultFactory): void
     {
         foreach ($this->auditsToSave as $iAuditId => $aAudit) {
             $auditResultFactory->create([
@@ -49,7 +43,7 @@ class AuditSaver
         }
     }
 
-    private function addAudits()
+    private function addAudits(): void
     {
         foreach ($this->auditsData['lighthouseResult']['audits'] as $auditName => $audit) {
             if (!empty($audit['numericValue'])) {
@@ -59,12 +53,12 @@ class AuditSaver
         }
     }
 
-    private function setExistingAuditsNames()
+    private function setExistingAuditsNames(): void
     {
         $this->existingAuditNames = $this->auditFactory->modelName()::all()->pluck('name', 'id');
     }
 
-    private function getAuditIdByName($auditName, $auditData = [])
+    private function getAuditIdByName($auditName, $auditData = []): int
     {
         $auditId = $this->existingAuditNames->search($auditName);
         if (!$auditId) {

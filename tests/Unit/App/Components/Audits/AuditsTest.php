@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\App\Components\Audits;
 
 use App\Components\Audits\Audits;
 use App\Components\Audits\PageSpeed\PageSpeedRequestFacade;
@@ -13,7 +13,7 @@ class AuditsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testMakeAudit()
+    public function testMakeAudit(): void
     {
         $deferred = new Deferred();
         $promise = $deferred->promise();

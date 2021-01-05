@@ -9,12 +9,12 @@ class AuditResultControllerTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testIndexResponseOk()
+    public function testIndexResponseOk(): void
     {
         $this->post('/api/audit-results')->assertOk();
     }
 
-    public function testAllServicesInResponse()
+    public function testAllServicesInResponse(): void
     {
         $this->post('/api/audit-results')->assertJsonStructure([
             'mobile' => [],

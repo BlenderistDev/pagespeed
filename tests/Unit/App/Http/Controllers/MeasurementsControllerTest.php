@@ -5,11 +5,9 @@ namespace Tests\Unit\App\Http\Controllers;
 use App\Models\Measurements;
 use App\Models\PageSpeedDesktopAudits;
 use App\Models\PageSpeedMobileAudits;
-use App\Observers\MeasurementObserver;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
-use Faker;
 
 class MeasurementsControllerTest extends TestCase
 {
@@ -156,7 +154,7 @@ class MeasurementsControllerTest extends TestCase
         $this->assertEquals($items->pluck('id'), $items->sortByDesc($field)->pluck('id'));
     }
 
-    public function testSortByDesktopServiceField()
+    public function testSortByDesktopServiceField(): void
     {
         $field = 3;
         $service = 'desktop';
@@ -185,7 +183,7 @@ class MeasurementsControllerTest extends TestCase
         $this->assertEquals(collect($response)->pluck('id'), $items->pluck('id'));
     }
 
-    public function testSortByMobileServiceField()
+    public function testSortByMobileServiceField(): void
     {
         $field = 3;
         $service = 'mobile';
@@ -214,7 +212,7 @@ class MeasurementsControllerTest extends TestCase
         $this->assertEquals(collect($response)->pluck('id'), $items->pluck('id'));
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         Event::fake();
         $measurement = Measurements::factory()->makeOne();
