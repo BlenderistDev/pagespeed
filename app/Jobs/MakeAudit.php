@@ -28,7 +28,9 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
     public function __construct(string $url, string $email = '')
     {
         $this->url = $url;
-        $this->email = explode(',', $email);
+        if ($email) {
+            $this->email = explode(',', $email);
+        }
     }
 
     /**
@@ -42,16 +44,18 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
         $measurements->domain = $this->url;
         $measurements->comment = "regular audit";
         $measurements->save();
-        if ($this->email) {
-            foreach($this->email as $email) {
-                Mail::to(trim($email))->send(new RegularAuditComplete($measurements));
-            }
-           
-        }
+        $this->sendMail($measurements);
     }
 
     public function uniqueId(): string
     {
         return $this->url;
+    }
+
+    private function sendMail(Measurements $measurements): void
+    {
+        foreach($this->email as $email) {
+            Mail::to(trim($email))->send(new RegularAuditComplete($measurements));
+        }
     }
 }

@@ -3,10 +3,12 @@
 namespace Tests\Unit\Models;
 
 use App\Jobs\MakeAudit;
+use App\Mail\RegularAuditComplete;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Faker;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
 
 class MakeAuditTest extends TestCase
 {
@@ -32,5 +34,22 @@ class MakeAuditTest extends TestCase
         $this->assertDatabaseHas('measurements', [
             'domain' => $this->url,
         ]);
+    }
+
+    public function testResultsEmailSend()
+    {
+        Event::fake();
+        Mail::fake();
+        $faker = Faker\Factory::create();
+        MakeAudit::dispatch($this->url, $faker->email);
+        Mail::assertSent(RegularAuditComplete::class);
+    }
+
+    public function testResultsEmailNotSendWithoutEmail()
+    {
+        Event::fake();
+        Mail::fake();
+        MakeAudit::dispatch($this->url);
+        Mail::assertNothingSent();
     }
 }
