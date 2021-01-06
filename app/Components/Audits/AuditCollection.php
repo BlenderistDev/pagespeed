@@ -15,7 +15,6 @@ class AuditCollection
     )
     {
         $this->measurements = Measurements::with($this->getRelations());
-        $this->auditServices = $auditServices;
     }
 
     public function addSorting(string $serviceName, string $sortField, string $sortWay = 'ASC'): void
