@@ -9,7 +9,7 @@ class PageSpeedMobileAudits extends ServiceAuditsPrototype
 {
     public function audit(): HasOne
     {
-        return $this->hasOne(Audits::class, 'id');
+        return $this->hasOne(Audits::class, 'id', 'audits_id');
     }
 
     public function getServiceName(): string

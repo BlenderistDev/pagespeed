@@ -9,7 +9,7 @@ class PageSpeedDesktopAudits extends ServiceAuditsPrototype
 {
     public function audit(): HasOne
     {
-        return $this->hasOne(DesktopAudits::class, 'id');
+        return $this->hasOne(DesktopAudits::class, 'id', 'audits_id');
     }
 
     public function getServiceName(): string
