@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Rules;
+namespace Tests\Unit\App\Rules;
 
 use App\Exceptions\CronStringException;
 use App\Rules\CronString;

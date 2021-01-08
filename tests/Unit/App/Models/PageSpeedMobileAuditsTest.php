@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\App\Models;
 
 use App\Models\Audits;
 use App\Models\PageSpeedMobileAudits;
