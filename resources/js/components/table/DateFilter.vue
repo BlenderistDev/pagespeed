@@ -14,8 +14,8 @@ export default {
   props: ['field'],
   data: function() {
     return {
-        lessValue,
-        moreValue,
+      lessValue,
+      moreValue,
     }
   },
   computed: {
