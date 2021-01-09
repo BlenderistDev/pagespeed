@@ -8,6 +8,7 @@
         FilterForm(field="comment")
         SortButton(columnName="comment") comment
       th(scope="col")
+        DateFilter(field="created_at")
         SortButton(columnName="created_at") created_at
 
       template(v-for="(serviceAudits, serviceKey) in audits")
@@ -24,6 +25,7 @@
 import SortButton from './SortButton.vue';
 import SortButtonAudit from './SortButtonAudit.vue';
 import FilterForm from './FilterForm.vue';
+import DateFilter from './DateFilter.vue';
 import { mapGetters, mapState } from 'vuex';
 
 export default {
@@ -31,6 +33,7 @@ export default {
     SortButton,
     SortButtonAudit,
     FilterForm,
+    DateFilter,
   },
   computed: {
     ...mapState([

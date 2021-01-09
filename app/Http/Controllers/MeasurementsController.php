@@ -15,10 +15,18 @@ class MeasurementsController extends Controller
         $measureCollectionBuilder = AuditFacade::getAuditCollection();
 
         $filter = $request->input('filter', []);
-        if (!empty($filter)) {
-            foreach ($filter as $fieldName => $value) {
-                $measureCollectionBuilder->addLikeFilter($fieldName, $value);
-            }
+        foreach ($filter as $fieldName => $value) {
+            $measureCollectionBuilder->addLikeFilter($fieldName, $value);
+        }
+
+        $lessFilter = $request->input('lessFilter', []);
+        foreach ($lessFilter as $fieldName => $value) {
+            $measureCollectionBuilder->addLessFilter($fieldName, $value);
+        }
+
+        $moreFilter = $request->input('moreFilter', []);
+        foreach ($moreFilter as $fieldName => $value) {
+            $measureCollectionBuilder->addMoreFilter($fieldName, $value);
         }
 
         $sort = $request->input('sort', []);

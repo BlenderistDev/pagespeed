@@ -34,6 +34,16 @@ class AuditCollection
         $this->measurements->where($filterField, 'LIKE', "%$value%");
     }
 
+    public function addLessFilter(string $filterField, $value): void
+    {
+        $this->measurements->where($filterField, '<=', $value);
+    }
+
+    public function addMoreFilter(string $filterField, $value): void
+    {
+        $this->measurements->where($filterField, '>=', $value);
+    }
+
     private function getServiceByName($serviceName): ?IAuditService
     {
         return $this->auditServices[$serviceName] ?? null;

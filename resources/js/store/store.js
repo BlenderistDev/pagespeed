@@ -14,6 +14,8 @@ export default {
       pageCount: 1,
     },
     filter: {},
+    lessFilter: {},
+    moreFilter: {},
     measurements: {},
   },
   getters: {
@@ -57,6 +59,8 @@ export default {
       return axios.post('/api/measurements', {
         page: state.page,
         filter: state.filter,
+        lessFilter: state.lessFilter,
+        moreFilter: state.moreFilter,
         sort: state.sort,
       }).then((result) => {
         commit('setMeasurements', result.data.data);
@@ -79,6 +83,14 @@ export default {
       commit('addFilter', filter);
       dispatch('fetchMeasurements');
     },
+    addLessFilter({commit, dispatch}, filter) {
+      commit('addLessFilter', filter);
+      dispatch('fetchMeasurements');
+    },
+    addMoreFilter({commit, dispatch}, filter) {
+      commit('addMoreFilter', filter);
+      dispatch('fetchMeasurements');
+    },
   },
 
   mutations: {
@@ -96,6 +108,12 @@ export default {
     },
     addFilter(state, filter) {
       Vue.set(state.filter, filter.field, filter.value);
+    },
+    addLessFilter(state, filter) {
+      Vue.set(state.lessFilter, filter.field, filter.value);
+    },
+    addMoreFilter(state, filter) {
+      Vue.set(state.moreFilter, filter.field, filter.value);
     },
     setPage(state, page) {
       Vue.set(state.page, 'page', page);
