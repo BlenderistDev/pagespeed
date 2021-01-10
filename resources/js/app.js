@@ -26,10 +26,11 @@ window.Vuex = Vuex;
 
 Vue.use(Vuex);
 
-import store from './store/store.js';
+import store from './store/index.js';
 
 const app = new Vue({
     el: '#app',
-    store: new Vuex.Store(store),
+    // store: new Vuex.Store(store),
+    store: store,
 });
 
