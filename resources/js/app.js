@@ -24,7 +24,7 @@ window.Vue = Vue;
 
 import store from './store/index.js';
 
-const app = new Vue({
+new Vue({
     el: '#app',
     store: store,
 });
