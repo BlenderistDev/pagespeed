@@ -23,7 +23,7 @@ class DesktopPageSpeedTest extends TestCase
         PageSpeedDesktopAudits::factory()->withMeausureId(4)->create();
         PageSpeedDesktopAudits::factory()->withMeausureId(5)->create();
         $desktopAudits = new DesktopPageSpeed();
-        $auditResults = $desktopAudits->getAuditResults([1, 3]);
+        $auditResults = $desktopAudits->getAuditResults(['measurements_id' => [1, 3]]);
         $this->assertCount(2, $auditResults);
     }
 
@@ -33,7 +33,7 @@ class DesktopPageSpeedTest extends TestCase
         $resultCount = 5;
         PageSpeedDesktopAudits::factory()->withMeausureId($measureId)->withUniqueAuditId()->count($resultCount)->create();
         $desktopAudits = new DesktopPageSpeed();
-        $auditResults = $desktopAudits->getAuditResults([$measureId]);
+        $auditResults = $desktopAudits->getAuditResults(['measurements_id' => [1, 3]]);
         $this->assertCount($resultCount, $auditResults[$measureId]);
     }
 

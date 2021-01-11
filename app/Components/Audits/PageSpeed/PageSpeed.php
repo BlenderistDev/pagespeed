@@ -21,9 +21,9 @@ abstract class PageSpeed implements IAuditService
             });
     }
 
-    public function getAuditResults(array $measureIdList): Collection
+    public function getAuditResults(array $filter): Collection
     {
-        $audits = $this->getAuditResultFactory()->modelName()::byMeausrements($measureIdList)
+        $audits = $this->getAuditResultFactory()->modelName()::ByFilter($filter)
             ->get()
             ->groupBy(['measurements_id'])
         ;

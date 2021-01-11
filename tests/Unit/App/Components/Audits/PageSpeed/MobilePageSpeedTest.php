@@ -23,7 +23,7 @@ class MobilePageSpeedTest extends TestCase
         PageSpeedMobileAudits::factory()->withMeausureId(4)->create();
         PageSpeedMobileAudits::factory()->withMeausureId(5)->create();
         $desktopAudits = new MobilePageSpeed();
-        $auditResults = $desktopAudits->getAuditResults([1, 3]);
+        $auditResults = $desktopAudits->getAuditResults(['measurements_id' => [1, 3]]);
         $this->assertCount(2, $auditResults);
     }
 
@@ -33,7 +33,7 @@ class MobilePageSpeedTest extends TestCase
         $resultCount = 5;
         PageSpeedMobileAudits::factory()->withMeausureId($measureId)->withUniqueAuditId()->count($resultCount)->create();
         $desktopAudits = new MobilePageSpeed();
-        $auditResults = $desktopAudits->getAuditResults([$measureId]);
+        $auditResults = $desktopAudits->getAuditResults(['measurements_id' => [1, 3]]);
         $this->assertCount($resultCount, $auditResults[$measureId]);
     }
 

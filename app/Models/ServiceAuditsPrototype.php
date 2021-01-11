@@ -20,8 +20,14 @@ abstract class ServiceAuditsPrototype extends Model
 
     abstract public function getHeaders(): Collection;
 
-    public function scopeByMeausrements(Builder $query, array $measurementIdList): Builder
+    public function scopeByFilter(Builder $query, array $filter): Builder
     {
-        return $query->whereIn('measurements_id', $measurementIdList);
+        foreach($filter as $field => $value) {
+            if (!is_array($value)) {
+                $value = [$value];
+            }
+            $query->whereIn($field, $value);
+        }
+        return $query;
     }
 }

@@ -31,7 +31,9 @@ export default {
   },
   fetchAuditResults({ commit, getters }) {
     return axios.post('/api/audit-results', {
-      idList: getters.measurementsIdList,
+      filter: {
+        measurements_id: getters.measurementsIdList,
+      }
     }).then((response) => {
       commit('setAuditResults', response.data);
     });

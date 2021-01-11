@@ -50,7 +50,7 @@ class PageSpeedMobileAuditsTest extends TestCase
         PageSpeedMobileAudits::factory()->withMeausureId($correctMeasurementId)->count($correctResultsCount)->create();
         PageSpeedMobileAudits::factory()->withMeausureId($wrongMeasurementId)->count(2)->create();
 
-        $auditResults = PageSpeedMobileAudits::byMeausrements([2])->get();
+        $auditResults = PageSpeedMobileAudits::byFilter(['measurements_id' => 2])->get();
         $this->assertCount($correctResultsCount, $auditResults);
         foreach ($auditResults as $auditResult) {
             $this->assertEquals($correctMeasurementId, $auditResult->measurements_id);
