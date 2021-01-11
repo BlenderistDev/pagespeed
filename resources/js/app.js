@@ -19,18 +19,13 @@ Vue.component('admin', require('./components/admin/admin.vue').default);
  */
 
 import Vue from 'vue';
-import Vuex from 'vuex';
 
 window.Vue = Vue;
-window.Vuex = Vuex;
-
-Vue.use(Vuex);
 
 import store from './store/index.js';
 
 const app = new Vue({
     el: '#app',
-    // store: new Vuex.Store(store),
     store: store,
 });
 
