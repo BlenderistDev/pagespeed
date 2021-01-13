@@ -219,4 +219,12 @@ class MeasurementsControllerTest extends TestCase
         $this->post('/api/measurements/store', $measurement->attributesToArray());
         $this->assertDatabaseHas('measurements', $measurement->attributesToArray());
     }
+
+    public function testStoreWithOutComment(): void
+    {
+        Event::fake();
+        $measurement = Measurements::factory()->makeOne(['comment' => null]);
+        $this->post('/api/measurements/store', $measurement->attributesToArray());
+        $this->assertDatabaseHas('measurements', $measurement->attributesToArray());
+    }
 }
