@@ -45,6 +45,16 @@ class MakeAuditTest extends TestCase
         Mail::assertSent(RegularAuditComplete::class);
     }
 
+    public function testResultsManyEmailSend(): void
+    {
+        Event::fake();
+        Mail::fake();
+        $faker = Faker\Factory::create();
+        $email = $faker->email . ',' . $faker->email . ',' . $faker->email;
+        MakeAudit::dispatch($this->url, $email);
+        Mail::assertSent(RegularAuditComplete::class, 3);
+    }
+
     public function testResultsEmailNotSendWithoutEmail(): void
     {
         Event::fake();
