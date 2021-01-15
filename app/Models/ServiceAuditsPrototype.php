@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -46,11 +47,11 @@ abstract class ServiceAuditsPrototype extends Model
 
     public function getXAttribute()
     {
-        return $this->value;
+        return Carbon::parse($this->created_at)->timestamp;
     }
 
     public function getYAttribute()
     {
-        return $this->created_at;
+        return (float) $this->value;
     }
 }

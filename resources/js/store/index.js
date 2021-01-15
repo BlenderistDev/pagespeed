@@ -26,6 +26,10 @@ export default new Vuex.Store({
     lessFilter: {},
     moreFilter: {},
     measurements: {},
+    chartData: {
+        mobile: [],
+        desktop: [],
+    },
   },
   getters: {
     columnsForService: state => service => state.showColumns[service],

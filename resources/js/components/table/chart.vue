@@ -12,7 +12,7 @@ export default {
     this.renderChart(this.chartData, this.options)
   },
   data: function() {
-    return { 
+    return {
       // chartData: {
       //   // labels: ['Январь', 'Февраль'],
       //   datasets: [
