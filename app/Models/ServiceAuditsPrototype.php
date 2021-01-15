@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 abstract class ServiceAuditsPrototype extends Model
@@ -14,7 +15,11 @@ abstract class ServiceAuditsPrototype extends Model
 
     protected $fillable = ['audits_id', 'value', 'measurements_id'];
 
+    protected $appends = ['x', 'y'];
+
     abstract public function audit(): HasOne;
+
+    abstract public function measurement(): BelongsTo;
 
     abstract public function getServiceName(): string;
 
@@ -29,5 +34,23 @@ abstract class ServiceAuditsPrototype extends Model
             $query->whereIn($field, $value);
         }
         return $query;
+    }
+
+    public function scopeByDomain(Builder $query, string $domain): Builder
+    {
+        $query->whereHas('measurement', function(Builder $query) use ($domain) {
+            return $query->where('domain', '=', $domain);
+        });
+        return $query;
+    }
+
+    public function getXAttribute()
+    {
+        return $this->value;
+    }
+
+    public function getYAttribute()
+    {
+        return $this->created_at;
     }
 }

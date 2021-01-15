@@ -12,4 +12,5 @@ interface IAuditService
     public function getAuditResults(array $filter): Collection;
     public function getAuditResultFactory(): AuditResultFactoryPrototype;
     public function getLinkName(): string;
+    public function getAuditResultsByDomain(string $domain): array;
 }

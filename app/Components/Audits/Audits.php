@@ -36,6 +36,14 @@ class Audits
         return $auditResults ?? [];
     }
 
+    public function getAuditResultsByDomain(string $domain): array
+    {
+        foreach ($this->getAuditServices() as $serviceName => $service) {
+            $auditResults[$serviceName] = $service->getAuditResultsByDomain($domain);
+        }
+        return $auditResults ?? [];
+    }
+
     /**
      * @return IAuditService[]
      */

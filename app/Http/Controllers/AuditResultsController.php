@@ -12,4 +12,10 @@ class AuditResultsController extends Controller
         $filter = $request->input('filter', []);
         return AuditFacade::getAuditResults($filter);
     }
+
+    public function domain(Request $request): array
+    {
+        $domain = $request->input('domain');
+        return AuditFacade::getAuditResultsByDomain($domain);
+    }
 }
