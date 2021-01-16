@@ -10,8 +10,8 @@ class AuditsController extends Controller
     public function index(): array
     {
         return [
-            'desktop' => DesktopAudits::all(),
-            'mobile' => Audits::all(),
+            'desktop' => DesktopAudits::all()->keyBy('id'),
+            'mobile' => Audits::all()->keyBy('id'),
         ];
     }
 }
