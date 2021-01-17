@@ -52,7 +52,7 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
     private function sendMail(Measurements $measurements): void
     {
         foreach($this->email as $email) {
-            Mail::to(trim($email))->send(new RegularAuditComplete($measurements));
+            Mail::to(trim($email))->queue(new RegularAuditComplete($measurements));
         }
     }
 }

@@ -42,7 +42,7 @@ class MakeAuditTest extends TestCase
         Mail::fake();
         $faker = Faker\Factory::create();
         MakeAudit::dispatch($this->url, $faker->email);
-        Mail::assertSent(RegularAuditComplete::class);
+        Mail::assertQueued(RegularAuditComplete::class);
     }
 
     public function testResultsManyEmailSend(): void
@@ -52,7 +52,7 @@ class MakeAuditTest extends TestCase
         $faker = Faker\Factory::create();
         $email = $faker->email . ',' . $faker->email . ',' . $faker->email;
         MakeAudit::dispatch($this->url, $email);
-        Mail::assertSent(RegularAuditComplete::class, 3);
+        Mail::assertQueued(RegularAuditComplete::class, 3);
     }
 
     public function testResultsEmailNotSendWithoutEmail(): void
