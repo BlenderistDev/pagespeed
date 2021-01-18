@@ -1,7 +1,10 @@
 <template lang="pug">
   tbody
     tr(v-for="measurement in measurements" :key="measurement.id")
-      td {{ measurement.domain }}
+      td
+        router-link(
+          :to="{ name: 'domain', params: {domain: measurement.domain} }"
+        ) {{ measurement.domain }}
       td {{ measurement.comment }}
       td {{ measurement.created_at }}
       template(v-for="(serviceAudits, serviceKey) in audits")

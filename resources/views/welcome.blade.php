@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="app">
-        <measurements />
+        <app />
     </div>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
