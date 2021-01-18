@@ -18,7 +18,7 @@ class RegularAuditComplete extends Mailable
     public function build(): self
     {
         return $this->from('noreplay@smoke-e.ru')
-            ->view('emails.regularAuditComplete', [
+            ->markdown('emails.regularAuditComplete', [
                 'measurement' => $this->measurement,
             ]);
     }
