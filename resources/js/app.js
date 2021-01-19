@@ -25,6 +25,10 @@ import Vue from 'vue';
 window.Vue = Vue;
 import VueRouter from 'vue-router'
 
+import VueRandomColor from 'vue-randomcolor'
+
+Vue.use(VueRandomColor)
+
 import Measurements from './components/Measurements.vue'
 import Domain from './components/domain/Domain.vue'
 
@@ -34,7 +38,7 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
+            name: 'table',
             component: Measurements
         },
         {
