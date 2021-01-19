@@ -53,6 +53,10 @@ abstract class ServiceAuditsPrototype extends Model
 
     public function getYAttribute()
     {
-        return (float) $this->value;
+        $y = (float) $this->value;
+        while ($y > 1) {
+            $y = $y / 10;
+        }
+        return (float) $y;
     }
 }
