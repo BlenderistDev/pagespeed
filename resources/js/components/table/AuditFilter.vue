@@ -1,22 +1,20 @@
 <template lang="pug">
   div
-    .alert.alert-primary.text-center(@click="show = !show") 
-        |{{ serviceKey }}
+    .alert.alert-primary.text-center(@click="show = !show")
+      |{{ serviceKey }}
     ul(v-show="show" class="list-unstyled card-columns")
-        li(v-for="(item, key, index) in audits" :key="index" :name="item.name")
+      li(v-for="(item, key, index) in audits" :key="index" :name="item.name")
+        .item-block
           input(
             type="checkbox"
             v-model="showColumns"
             :value="item.name"
             @change="updateShowColumns()"
           )
-          label(class="form-check-label") {{item.title}}
+          |{{item.title}}
 </template>
 
 <script>
-
-import { mapState } from 'vuex';
-
 export default {
   props: ['serviceKey'],
   data: function() {
@@ -51,8 +49,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .card-columns {
-    column-count: 5;
+    column-count: 4;
+  }
+  .item-block {
+      break-inside: avoid;
+      margin-bottom: 7px;
+  }
+  input {
+      margin-right: 3px;
   }
 </style>
