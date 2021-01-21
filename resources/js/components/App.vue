@@ -1,5 +1,5 @@
 <template lang="pug">
-  .container
+  .container-fluid
     nav(
       class="navbar navbar-light"
     )
