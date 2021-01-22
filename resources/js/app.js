@@ -42,7 +42,7 @@ const router = new VueRouter({
             component: Measurements
         },
         {
-            path: '/domain/:domain',
+            path: '/domain/',
             name: 'domain',
             component: Domain,
             props: true,
