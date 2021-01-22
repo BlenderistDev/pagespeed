@@ -1,6 +1,5 @@
 <template lang="pug">
   .card
-    .card-header Добавить Замер
     .card-body
       .form-group
         input(v-model="domain" class="form-control" placeholder="Domain")
