@@ -1,14 +1,19 @@
 <template lang="pug">
   .container-fluid
-    nav(
-      class="navbar navbar-light"
-    )
-      router-link(
-        class="navbar-brand"
-        :to="{name: 'table'}") Замеры
+    Menu
     router-view
 </template>
 
+<script>
+import Menu from './Menu.vue';
+
+export default {
+   components: {
+     Menu,
+   }
+}
+
+</script>
 <style scoped>
 nav {
   background-color: #e3f2fd;

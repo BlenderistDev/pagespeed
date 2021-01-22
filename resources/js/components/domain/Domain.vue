@@ -46,12 +46,14 @@ export default {
       service: "mobile",
     };
   },
-  props: ["domain"],
   computed: {
     ...mapState([
       "chartData",
       "audits",
     ]),
+    domain: function() {
+      return this.$route.query.domain;
+    },
     chart: function () {
       const datasets = [];
       Object.entries(this.chartData[this.service]).forEach((el) => {
@@ -70,7 +72,7 @@ export default {
     },
   },
   created() {
-    this.fetchChartData(this.$route.params.domain);
+    this.fetchChartData(this.domain);
   },
   methods: {
     ...mapActions(["fetchChartData"]),
