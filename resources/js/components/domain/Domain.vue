@@ -44,11 +44,14 @@ export default {
   data: () => {
     return {
       service: "mobile",
+      chartData: {
+        mobile: '',
+        desktop: '',
+      },
     };
   },
   computed: {
     ...mapState([
-      "chartData",
       "audits",
     ]),
     domain: function() {
@@ -72,7 +75,11 @@ export default {
     },
   },
   created() {
-    this.fetchChartData(this.domain);
+    axios.post('/api/audit-results/domain', {
+      domain: this.domain,
+    }).then((response) => {
+      this.chartData = response.data
+    });
   },
   methods: {
     ...mapActions(["fetchChartData"]),

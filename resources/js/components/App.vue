@@ -6,11 +6,20 @@
 
 <script>
 import Menu from './Menu.vue';
+import {mapActions} from "vuex";
 
 export default {
-   components: {
-     Menu,
-   }
+  components: {
+    Menu,
+  },
+  created() {
+    this.fetchAudits();
+  },
+  methods: {
+    ...mapActions([
+      'fetchAudits',
+    ]),
+  }
 }
 
 </script>

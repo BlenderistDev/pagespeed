@@ -32,7 +32,4 @@ export default {
   setAuditResults(state, auditResults) {
     state.auditResults = auditResults;
   },
-  setChartData(state, chartData) {
-    state.chartData = chartData;
-  }
 }

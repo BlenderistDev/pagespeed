@@ -54,11 +54,4 @@ export default {
     commit('addMoreFilter', filter);
     dispatch('fetchMeasurements');
   },
-  fetchChartData({ commit}, domain) {
-      return axios.post('/api/audit-results/domain', {
-          domain: domain,
-      }).then((response) => {
-          commit('setChartData', response.data);
-      });
-  }
 }
