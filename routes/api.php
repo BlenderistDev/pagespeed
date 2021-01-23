@@ -32,7 +32,5 @@ Route::post('measurements/store', [MeasurementsController::class, 'store']);
 
 Route::post('measurements/store', [MeasurementsController::class, 'store']);
 
-Route::middleware('auth:api')->group(function () {
-    Route::put('regular-audits', [RegularAuditsController::class, 'store']);
-    Route::get('regular-audits', [RegularAuditsController::class, 'index']);
-});
+Route::put('regular-audits', [RegularAuditsController::class, 'store']);
+Route::get('regular-audits', [RegularAuditsController::class, 'index']);
