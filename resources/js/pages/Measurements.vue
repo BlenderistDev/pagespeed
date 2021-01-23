@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import MeasureForm from './MeasureForm.vue';
-  import MeasureTable from './table/MeasureTable.vue';
+  import MeasureForm from '../components/measurements/MeasureForm.vue';
+  import MeasureTable from '../components/measurements/MeasureTable.vue';
 
   export default {
     components: {

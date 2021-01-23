@@ -10,7 +10,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import PreLoader from './PreLoader.vue';
+import PreLoader from '../PreLoader.vue';
 
 export default {
   components: {

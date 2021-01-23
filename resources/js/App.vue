@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Menu from './Menu.vue';
+import Menu from './components/Menu.vue';
 import {mapActions} from "vuex";
 
 export default {

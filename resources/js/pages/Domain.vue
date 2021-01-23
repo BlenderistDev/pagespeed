@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Chart from "./Chart.vue";
+import Chart from "../components/domain/Chart.vue";
 
 import {mapState, mapActions} from "vuex";
 
