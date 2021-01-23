@@ -26,6 +26,10 @@ Route::get('/domain', function () {
     return view('welcome');
 });
 
+Route::get('/regular-audits', function () {
+    return view('welcome');
+});
+
 Route::get('admin', function() {
     return view('admin');
 })->middleware('auth');
