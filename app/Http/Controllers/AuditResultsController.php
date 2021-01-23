@@ -9,7 +9,13 @@ class AuditResultsController extends Controller
 {
     public function index(Request $request): array
     {
-        $measureIdList = $request->input('idList', []);
-        return AuditFacade::getAuditResults($measureIdList);
+        $filter = $request->input('filter', []);
+        return AuditFacade::getAuditResults($filter);
+    }
+
+    public function domain(Request $request): array
+    {
+        $domain = $request->input('domain');
+        return AuditFacade::getAuditResultsByDomain($domain);
     }
 }

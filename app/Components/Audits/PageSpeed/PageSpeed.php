@@ -21,9 +21,9 @@ abstract class PageSpeed implements IAuditService
             });
     }
 
-    public function getAuditResults(array $measureIdList): Collection
+    public function getAuditResults(array $filter): Collection
     {
-        $audits = $this->getAuditResultFactory()->modelName()::byMeausrements($measureIdList)
+        $audits = $this->getAuditResultFactory()->modelName()::ByFilter($filter)
             ->get()
             ->groupBy(['measurements_id'])
         ;
@@ -31,6 +31,11 @@ abstract class PageSpeed implements IAuditService
             return $item->keyBy('audits_id');
         });
         return $audits;
+    }
+
+    public function getAuditResultsByDomain(string $domain): array
+    {
+        return $this->getAuditResultFactory()->modelName()::byDomain($domain)->get()->keyBy('id')->groupBy(['audits_id'])->toArray();
     }
 
     public abstract function getAuditResultFactory(): AuditResultFactoryPrototype;

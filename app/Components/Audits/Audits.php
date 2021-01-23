@@ -28,10 +28,18 @@ class Audits
         return new AuditCollection($this->getAuditServices());
     }
 
-    public function getAuditResults($measureIdList): array
+    public function getAuditResults(array $filter): array
     {
         foreach ($this->getAuditServices() as $serviceName => $service) {
-            $auditResults[$serviceName] = $service->getAuditResults($measureIdList);
+            $auditResults[$serviceName] = $service->getAuditResults($filter);
+        }
+        return $auditResults ?? [];
+    }
+
+    public function getAuditResultsByDomain(string $domain): array
+    {
+        foreach ($this->getAuditServices() as $serviceName => $service) {
+            $auditResults[$serviceName] = $service->getAuditResultsByDomain($domain);
         }
         return $auditResults ?? [];
     }

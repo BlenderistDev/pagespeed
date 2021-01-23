@@ -14,7 +14,7 @@
   export default {
     components: {
       MeasureForm,
-      MeasureTable
+      MeasureTable,
     },
   }
 </script>

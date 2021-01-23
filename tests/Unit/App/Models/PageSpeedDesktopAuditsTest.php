@@ -50,7 +50,7 @@ class PageSpeedDesktopAuditsTest extends TestCase
         PageSpeedDesktopAudits::factory()->withMeausureId($correctMeasurementId)->count($correctResultsCount)->create();
         PageSpeedDesktopAudits::factory()->withMeausureId($wrongMeasurementId)->count(2)->create();
 
-        $auditResults = PageSpeedDesktopAudits::byMeausrements([2])->get();
+        $auditResults = PageSpeedDesktopAudits::byFilter(['measurements_id' => 2])->get();
         $this->assertCount($correctResultsCount, $auditResults);
         foreach ($auditResults as $auditResult) {
             $this->assertEquals($correctMeasurementId, $auditResult->measurements_id);

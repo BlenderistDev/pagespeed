@@ -31,5 +31,5 @@ export default {
   },
   setAuditResults(state, auditResults) {
     state.auditResults = auditResults;
-  }
+  },
 }

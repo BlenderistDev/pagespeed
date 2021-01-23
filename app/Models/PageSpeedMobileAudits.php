@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PageSpeedMobileAudits extends ServiceAuditsPrototype
@@ -20,5 +21,10 @@ class PageSpeedMobileAudits extends ServiceAuditsPrototype
     public function getHeaders(): Collection
     {
         return Audits::all();
+    }
+
+    public function measurement(): BelongsTo
+    {
+        return $this->belongsTo(Measurements::class, 'measurements_id', 'id');
     }
 }
