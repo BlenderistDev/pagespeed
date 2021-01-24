@@ -6,8 +6,6 @@ export default {
   extends: Line,
   mixins: [reactiveProp],
   mounted () {
-    // this.chartData создаётся внутри миксина.
-    // Если вы хотите передать опции, создайте локальный объект options
     this.renderChart(this.chartData, this.options)
   },
   data: function() {
