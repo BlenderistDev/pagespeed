@@ -11,8 +11,7 @@ export default {
   data: function() {
     return {
       options: {
-        responsive: true,
-        maintainAspectRatio: true,
+				maintainAspectRatio: false,
         tooltips: {
 					mode: 'index',
 					intersect: false,

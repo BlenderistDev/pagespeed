@@ -29,7 +29,10 @@
             for="defaultCheck2"
           )
           | mobile
-  chart(:chartData="chart")
+  chart(
+    :chartData="chart"
+    :height="height"
+  )
 </template>
 
 <script>
@@ -72,6 +75,9 @@ export default {
       return {
         datasets: datasets,
       };
+    },
+    height: function() {
+      return window.innerHeight - 200;
     },
   },
   created() {
