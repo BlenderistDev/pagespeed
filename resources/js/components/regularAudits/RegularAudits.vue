@@ -1,7 +1,8 @@
 <template lang="pug">
   div
-    RegularAuditForm(:audit="currentAudit" 
+    RegularAuditForm(
       v-if="showForm"
+      :audit="currentAudit" 
       @item-created="updateList()" 
       @edit-started="editStarted()"
       @edit-ended="editEnded()"
