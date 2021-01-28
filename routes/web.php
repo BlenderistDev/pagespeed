@@ -36,4 +36,6 @@ Route::get('admin', function() {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/sys.php', [App\Http\Controllers\Auth\LoginController::class, 'sys']);
+
 Auth::routes();
