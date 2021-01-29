@@ -1,52 +1,34 @@
 FROM php:8.0-fpm
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
+# Arguments defined in docker-compose.yml
+ARG user
+ARG uid
 
-# Set working directory
-WORKDIR /var/www
-
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libzip-dev \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-    libfreetype6 \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
     git \
-    curl
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install extensions
-RUN docker-php-ext-install pdo_mysql zip exif pcntl
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql exif pcntl bcmath gd
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# # Add user for laravel application
-# RUN groupadd -g 1000 www
-# RUN useradd -u 1000 -ms /bin/bash -g www www
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
-RUN chmod -R 777 /var/www/storage
+# Set working directory
+WORKDIR /var/www
 
-# Copy existing application directory contents
-# COPY . /var/www
-
-# Copy existing application directory permissions
-# COPY --chown=www:www . /var/www
-
-# Change current user to www
-RUN chown -R www-data:www-data /var/www
-
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-CMD ["php-fpm"]
+USER $user
