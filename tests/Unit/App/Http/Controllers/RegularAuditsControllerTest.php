@@ -17,12 +17,6 @@ class RegularAuditsControllerTest extends TestCase
         $this->get('/api/regular-audits')->assertOk();
     }
 
-    public function testOnlyAuthAccess(): void
-    {
-        $this->getJson('/api/regular-audits')->assertUnauthorized();
-        $this->putJson('/api/regular-audits')->assertUnauthorized();
-    }
-
     public function testIndex(): void
     {
         $faker = Faker\Factory::create();
