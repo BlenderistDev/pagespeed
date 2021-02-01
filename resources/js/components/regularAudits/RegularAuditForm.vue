@@ -6,7 +6,6 @@
       input(:class="getFieldClass(fieldKey)" v-model="audit[fieldKey]")
       div(v-if="errors[fieldKey]" class="invalid-feedback") {{ errors[fieldKey].join('') }}
     button(class="btn btn-primary" @click="sendRegularAudit") Отправить
-
 </template>
 
 <script>
