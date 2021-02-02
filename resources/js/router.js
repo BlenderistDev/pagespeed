@@ -1,7 +1,10 @@
+import Vue from 'vue';
 import VueRouter from "vue-router";
 import Measurements from "./pages/Measurements.vue";
 import Domain from "./pages/Domain.vue";
 import RegularAudits from "./pages/RegularAudits.vue";
+
+Vue.use(VueRouter);
 
 export default new VueRouter({
   mode: 'history',

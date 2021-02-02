@@ -1,12 +1,12 @@
 export default {
   updateShowColumns(state, params) {
-      Vue.set(state.showColumns, params.service, params.columns);
+    Vue.set(state.showColumns, params.service, params.columns);
   },
   setShowColumns(state, showColumns) {
-      state.showColumns = showColumns;
+    state.showColumns = showColumns;
   },
   setAudits(state, audits) {
-      state.audits = audits;
+    state.audits = audits;
   },
   setSort(state, sort) {
     state.sort = sort;
