@@ -9,11 +9,11 @@ use React\EventLoop;
 
 class Audits
 {
-    public function makeAudits(string $url, int $foreignId): void
+    public static function makeAudits(string $url, int $foreignId): void
     {
         $loop = EventLoop\Factory::create();
         $audits = [];
-        foreach ($this->getAuditServices() as $auditService) {
+        foreach (self::getAuditServices() as $auditService) {
             $audits []= $auditService->makeAudit($url, $foreignId, $loop);
         }
         try {
@@ -23,22 +23,22 @@ class Audits
         }
     }
 
-    public function getAuditCollection(): AuditCollection
+    public static function getAuditCollection(): AuditCollection
     {
-        return new AuditCollection($this->getAuditServices());
+        return new AuditCollection(self::getAuditServices());
     }
 
-    public function getAuditResults(array $filter): array
+    public static function getAuditResults(array $filter): array
     {
-        foreach ($this->getAuditServices() as $serviceName => $service) {
+        foreach (self::getAuditServices() as $serviceName => $service) {
             $auditResults[$serviceName] = $service->getAuditResults($filter);
         }
         return $auditResults ?? [];
     }
 
-    public function getAuditResultsByDomain(string $domain): array
+    public static function getAuditResultsByDomain(string $domain): array
     {
-        foreach ($this->getAuditServices() as $serviceName => $service) {
+        foreach (self::getAuditServices() as $serviceName => $service) {
             $auditResults[$serviceName] = $service->getAuditResultsByDomain($domain);
         }
         return $auditResults ?? [];
@@ -47,7 +47,7 @@ class Audits
     /**
      * @return IAuditService[]
      */
-    private function getAuditServices(): array
+    private static function getAuditServices(): array
     {
         return [
             'mobile' => new MobilePageSpeed(),

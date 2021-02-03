@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Components\Audits\AuditFacade;
+use App\Components\Audits\Audits;
 use App\Models\Measurements;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -11,7 +11,7 @@ class MeasurementsController extends Controller
 {
     public function index(Request $request): Collection
     {
-        $measureCollectionBuilder = AuditFacade::getAuditCollection();
+        $measureCollectionBuilder = Audits::getAuditCollection();
 
         $filter = $request->input('filter', []);
         foreach ($filter as $fieldName => $value) {
