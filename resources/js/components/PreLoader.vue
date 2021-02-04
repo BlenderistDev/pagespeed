@@ -1,13 +1,13 @@
-<template>
-    <div class="vld-parent">
-        <loading :active.sync="isLoading" 
-            :can-cancel="false" 
-            :is-full-page="fullPage"
-            :loader="loader">
-        </loading>
-    </div>
+<template lang="pug">
+vld-parent
+  loading(
+    :active.sync="isLoading" 
+    :can-cancel="false" 
+    :is-full-page="fullPage"
+    :loader="loader"
+  )
 </template>
- 
+
 <script>
   import Loading from 'vue-loading-overlay';
   import 'vue-loading-overlay/dist/vue-loading.css';
