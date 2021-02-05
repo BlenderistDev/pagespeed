@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Components\Audits\AuditFacade;
+use App\Components\Audits\Audits;
 use App\Models\Measurements;
 
 class MeasurementObserver
@@ -10,6 +10,6 @@ class MeasurementObserver
     public function created(Measurements $measure): void
     {
         $url =  $measure->domain;
-        AuditFacade::makeAudits($url, $measure->id);
+        Audits::makeAudits($url, $measure->id);
     }
 }
