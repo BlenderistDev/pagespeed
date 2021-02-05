@@ -23,8 +23,9 @@ class RegularAuditsFactory extends Factory
     public function definition()
     {
         $faker = Faker\Factory::create();
+        $urlParts = parse_url($faker->url);
         return [
-            'url' => $faker->url,
+            'url' => $urlParts['scheme'] . '://' . $urlParts['host'],
             'minute' => '',
             'hour' => '',
             'month_day' => '',
