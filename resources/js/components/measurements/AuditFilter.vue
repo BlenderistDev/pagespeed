@@ -9,12 +9,14 @@
             type="checkbox"
             v-model="showColumns"
             :value="item.name"
-            @change="updateShowColumns()"
+            @change="updateFilter()"
           )
           |{{item.title}}
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   props: ['serviceKey'],
   data: function() {
@@ -39,8 +41,11 @@ export default {
     }
   },
   methods: {
-    updateShowColumns: function() {
-      this.$store.commit('updateShowColumns', {
+    ...mapMutations([
+      'updateShowColumns'
+    ]),
+    updateFilter: function() {
+      this.showColumns({
         columns: this.showColumns,
         service: this.serviceKey
       })
