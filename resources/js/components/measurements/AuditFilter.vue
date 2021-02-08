@@ -33,7 +33,7 @@ export default {
         return this.$store.getters.columnsForService(this.serviceKey);
       },
       set (value) {
-        this.$store.commit('updateShowColumns', {
+        this.updateShowColumns({
           columns: value,
           service: this.serviceKey
         })
