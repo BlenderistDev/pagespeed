@@ -16,7 +16,7 @@ import TablePagination from './TablePagination.vue';
 import MeasureTableHeader from './MeasureTableHeader.vue';
 import MeasureTableBody from './MeasureTableBody.vue';
 import AuditFilter from './AuditFilter.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   components: {
@@ -30,9 +30,9 @@ export default {
     this.fetchMeasurements();
   },
   computed: {
-    showColumns: function() {
-      return this.$store.state.showColumns;
-    },
+    ...mapState([
+      'showColumns'
+    ])
   },
   methods: {
     ...mapActions([
