@@ -1,11 +1,11 @@
 <template lang="pug">
-  .card
-    .card-body
-      .form-group
-        input(v-model="domain" class="form-control" placeholder="Domain")
-        input(v-model="comment" class="form-control" placeholder="Comment")
-        button(@click="addMeasure()" class="btn btn-primary") Отправить
-        PreLoader(ref="preloader")
+.card
+  .card-body
+    .form-group
+      input(v-model="domain" class="form-control" placeholder="Domain")
+      input(v-model="comment" class="form-control" placeholder="Comment")
+      button(@click="addMeasure()" class="btn btn-primary") Отправить
+      PreLoader(ref="preloader")
 </template>
 
 <script>

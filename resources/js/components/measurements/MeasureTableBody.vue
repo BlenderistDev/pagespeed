@@ -1,15 +1,15 @@
 <template lang="pug">
-  tbody
-    tr(v-for="measurement in measurements" :key="measurement.id")
-      td(@click="goToDomain(measurement.domain)") {{ measurement.domain }}
-      td {{ measurement.comment }}
-      td {{ measurement.created_at }}
-      template(v-for="(serviceAudits, serviceKey) in audits")
-        template(v-for="(audit, auditKey) in serviceAudits")
-          transition(name="slide-fade")
-            td(v-show="showColumns[serviceKey].includes(audit.name)" :class="serviceKey") 
-              template(v-if="auditResults[serviceKey] && auditResults[serviceKey][measurement.id] && auditResults[serviceKey][measurement.id][audit.id]")
-               | {{ auditResults[serviceKey][measurement.id][audit.id].value }}
+tbody
+  tr(v-for="measurement in measurements" :key="measurement.id")
+    td(@click="goToDomain(measurement.domain)") {{ measurement.domain }}
+    td {{ measurement.comment }}
+    td {{ measurement.created_at }}
+    template(v-for="(serviceAudits, serviceKey) in audits")
+      template(v-for="(audit, auditKey) in serviceAudits")
+        transition(name="slide-fade")
+          td(v-show="showColumns[serviceKey].includes(audit.name)" :class="serviceKey") 
+            template(v-if="auditResults[serviceKey] && auditResults[serviceKey][measurement.id] && auditResults[serviceKey][measurement.id][audit.id]")
+             | {{ auditResults[serviceKey][measurement.id][audit.id].value }}
 </template>
 
 <script>

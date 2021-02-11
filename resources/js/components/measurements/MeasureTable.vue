@@ -1,13 +1,13 @@
 <template lang="pug">
-  div
-      div(v-for="(serviceAudits, serviceKey) in showColumns" :key="serviceKey")
-        AuditFilter(:serviceKey="serviceKey")
-      button(@click="fetchMeasurements()" class="btn btn-primary") Обновить
-      .measure-table
-        table(class="table table-striped table-bordered")
-          MeasureTableHeader
-          MeasureTableBody
-      TablePagination
+div
+  div(v-for="(serviceAudits, serviceKey) in showColumns" :key="serviceKey")
+    AuditFilter(:serviceKey="serviceKey")
+  button(@click="fetchMeasurements()" class="btn btn-primary") Обновить
+  .measure-table
+    table(class="table table-striped table-bordered")
+      MeasureTableHeader
+      MeasureTableBody
+  TablePagination
 </template>
 
 <script>

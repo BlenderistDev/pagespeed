@@ -1,10 +1,10 @@
 <template lang="pug">
-  .form-row
-    .form-group.col-md-6
-      |C
-      input(v-model="moreValue" type="date" @change="addMoreFilter(moreFilter)")
-      |По
-      input(v-model="lessValue" type="date" @change="addLessFilter(lessFilter)")
+.form-row
+  .form-group.col-md-6
+    |C
+    input(v-model="moreValue" type="date" @change="addMoreFilter(moreFilter)")
+    |По
+    input(v-model="lessValue" type="date" @change="addLessFilter(lessFilter)")
 </template>
 
 <script>

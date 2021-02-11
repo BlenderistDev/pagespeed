@@ -1,24 +1,24 @@
 <template lang="pug">
-  thead
-    tr
-      th(scope="col")
-        FilterForm(field="domain")
-        SortButton(columnName="domain") domain
-      th(scope="col") 
-        FilterForm(field="comment")
-        SortButton(columnName="comment") comment
-      th(scope="col")
-        DateFilter(field="created_at")
-        SortButton(columnName="created_at") created_at
+thead
+  tr
+    th(scope="col")
+      FilterForm(field="domain")
+      SortButton(columnName="domain") domain
+    th(scope="col") 
+      FilterForm(field="comment")
+      SortButton(columnName="comment") comment
+    th(scope="col")
+      DateFilter(field="created_at")
+      SortButton(columnName="created_at") created_at
 
-      template(v-for="(serviceAudits, serviceKey) in audits")
-        template(v-for="audit in serviceAudits")
-          transition(name="slide-fade")
-            th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col" :title="audit.description")
-              SortButtonAudit(
-                :auditId="audit.id"
-                :service="serviceKey"
-              ) {{ audit.title }}
+    template(v-for="(serviceAudits, serviceKey) in audits")
+      template(v-for="audit in serviceAudits")
+        transition(name="slide-fade")
+          th(v-show="showColumns[serviceKey].includes(audit.name)" scope="col" :title="audit.description")
+            SortButtonAudit(
+              :auditId="audit.id"
+              :service="serviceKey"
+            ) {{ audit.title }}
 </template>
 
 <script>

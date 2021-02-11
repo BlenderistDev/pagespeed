@@ -1,13 +1,13 @@
 <template lang="pug">
-  span(@click="sortClick()")
-    slot
-    span(v-if="sortField === columnName")
-      span(v-if="sortWay === 'DESC'") &#8593;
-      span(v-if="sortWay === 'ASC'") &#8595;
+span(@click="sortClick()")
+  slot
+  span(v-if="sortField === columnName")
+    span(v-if="sortWay === 'DESC'") &#8593;
+    span(v-if="sortWay === 'ASC'") &#8595;
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   props: ['columnName'],
@@ -17,6 +17,9 @@ export default {
     }
   },
   computed: {
+    ...mapState([
+      'sort'
+    ]),
     newSortingWay: function() {
       if (!this.sortWay || this.sortWay === 'DESC') {
         return'ASC';
@@ -32,7 +35,7 @@ export default {
       }
     },
     sortField: function() {
-      return this.$store.state.sort.field;
+      return this.sort.field;
     }
   },
   methods: {

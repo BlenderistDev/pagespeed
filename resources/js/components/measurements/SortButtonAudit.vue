@@ -1,13 +1,13 @@
 <template lang="pug">
-  span(v-on:click="sortClick()")
-    slot
-    span(v-if="showSortIcon")
-      span(v-if="sortWay === 'DESC'") &#8593;
-      span(v-if="sortWay === 'ASC'") &#8595;
+span(v-on:click="sortClick()")
+  slot
+  span(v-if="showSortIcon")
+    span(v-if="sortWay === 'DESC'") &#8593;
+    span(v-if="sortWay === 'ASC'") &#8595;
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   props: ['auditId', 'service'],
@@ -17,6 +17,9 @@ export default {
     }
   },
   computed: {
+    ...mapState([
+      'sort'
+    ]),
     newSortingWay: function() {
       if (!this.sortWay || this.sortWay === 'DESC') {
         return'ASC';
@@ -32,10 +35,10 @@ export default {
       }
     },
     sortField: function() {
-      return this.$store.state.sort.field;
+      return this.sort.field;
     },
     sortService: function() {
-      return this.$store.state.sort.service;
+      return this.sort.service;
     },
     showSortIcon: function() {
       return (this.sortField === this.auditId) && (this.sortService === this.service)

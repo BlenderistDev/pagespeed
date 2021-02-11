@@ -1,10 +1,10 @@
 <template lang="pug">
-  div
-    nav(aria-label='...')
-      ul(class="pagination")
-        li(v-for="n in getPageCount" :class="getClassForPage(n)")
-          a(class='page-link' @click="setPage(n)")
-            |{{ n }}
+div
+  nav(aria-label='...')
+    ul(class="pagination")
+      li(v-for="n in getPageCount" :class="getClassForPage(n)")
+        a(class='page-link' @click="setPage(n)")
+          |{{ n }}
 </template>
 
 <script>
