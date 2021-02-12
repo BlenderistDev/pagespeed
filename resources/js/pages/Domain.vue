@@ -1,5 +1,5 @@
 <template lang="pug">
-  Domain
+Domain
 </template>
 
 <script>

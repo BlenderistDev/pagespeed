@@ -1,5 +1,5 @@
 <template lang="pug">
-  RegularAudits
+RegularAudits
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template lang="pug">
-  .container-fluid
-    .row.justify-content-center
-      MeasureForm
-      .card
-        .card-body
-          MeasureTable(ref="measureTable")
+.container-fluid
+  .row.justify-content-center
+    MeasureForm
+    .card
+      .card-body
+        MeasureTable(ref="measureTable")
 </template>
 
 <script>

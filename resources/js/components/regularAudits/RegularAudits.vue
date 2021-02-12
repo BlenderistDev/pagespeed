@@ -1,23 +1,22 @@
 <template lang="pug">
-  div
-    RegularAuditForm(
-      v-if="showForm"
-      :audit="currentAudit" 
-      @item-created="updateList()" 
-      @edit-started="editStarted()"
-      @edit-ended="editEnded()"
-    )
-    div(v-else)
-      button(@click="showEditForm({})" class="btn btn-primary") Создать
-      table(class="table")
-        thead
-          th(v-for="(field) in fields") {{ field }}
-        tbody
-          tr(v-for="audit in regularAuditList" :key="audit.id")
-            td(v-for="(field, fieldKey) in fields") {{ audit[fieldKey] }}
-            td
-              button(@click="showEditForm(audit)" class="btn btn-primary") Редактировать
-
+div
+  RegularAuditForm(
+    v-if="showForm"
+    :audit="currentAudit" 
+    @item-created="updateList()" 
+    @edit-started="editStarted()"
+    @edit-ended="editEnded()"
+  )
+  div(v-else)
+    button(@click="showEditForm({})" class="btn btn-primary") Создать
+    table(class="table")
+      thead
+        th(v-for="(field) in fields") {{ field }}
+      tbody
+        tr(v-for="audit in regularAuditList" :key="audit.id")
+          td(v-for="(field, fieldKey) in fields") {{ audit[fieldKey] }}
+          td
+            button(@click="showEditForm(audit)" class="btn btn-primary") Редактировать
 </template>
 
 <script>
