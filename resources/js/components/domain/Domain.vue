@@ -23,6 +23,7 @@
 
 <script>
 import Chart from "./Chart.vue";
+import _ from 'lodash'
 
 import { mapState, mapActions } from "vuex";
 
@@ -45,14 +46,16 @@ export default {
       return this.$route.query.domain;
     },
     chart: function () {
-      const datasets = [];
-      Object.entries(this.chartData[this.service]).forEach(el => datasets.push({
-        data: el[1],
-        label: this.audits[this.service][el[0]]["title"],
-        fill: false,
-        hidden: true,
-        borderColor: this.$randomColor(),
-      }));
+      const datasets = _.reduce(Object.entries(this.chartData[this.service]), (datasets, el) => {
+        datasets.push({
+          data: el[1],
+          label: this.audits[this.service][el[0]]["title"],
+          fill: false,
+          hidden: true,
+          borderColor: this.$randomColor(),
+        })
+        return datasets
+      }, [])
       return {
         datasets: datasets,
       };
