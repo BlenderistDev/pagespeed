@@ -3,9 +3,9 @@ div
   RegularAuditForm(
     v-if="showForm"
     :audit="currentAudit" 
-    @item-created="updateList()" 
-    @edit-started="editStarted()"
-    @edit-ended="editEnded()"
+    @item-created="updateList" 
+    @edit-started="editStarted"
+    @edit-ended="editEnded"
   )
   div(v-else)
     button(@click="showEditForm({})" class="btn btn-primary") Создать
