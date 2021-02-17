@@ -16,7 +16,10 @@ div
         tr(v-for="audit in regularAuditList" :key="audit.id")
           td(v-for="(field, fieldKey) in fields") {{ audit[fieldKey] }}
           td
-            button(@click="showEditForm(audit)" class="btn btn-primary") Редактировать
+            button(
+              @click="showEditForm(audit)"
+              class="btn btn-primary"
+            ) Редактировать
 </template>
 
 <script>
