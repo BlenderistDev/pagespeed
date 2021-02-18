@@ -1,10 +1,10 @@
 <template lang="pug">
-  loading(
-    :active.sync="isLoading" 
-    :can-cancel="false" 
-    :is-full-page="fullPage"
-    :loader="loader"
-  )
+loading(
+  :active.sync="isLoading" 
+  :can-cancel="false" 
+  :is-full-page="fullPage"
+  :loader="loader"
+)
 </template>
 
 <script>
