@@ -1,14 +1,18 @@
 <template lang="pug">
-div azaza
+div {{ audit }}
 </template>
 
 <script>
 export default {
-  data: {
-    audit: {},
+  data () {
+    return {
+      audit: {},
+    }
   },
-  created() {
-    axios.post('/api/audit-results/show', {id: 28}).then(res => console.log(res));
+  created () {
+    axios.post('/api/audit-results/show', {
+      id: this.$route.params.id
+    }).then(res => this.audit = res);
   },
 }
 </script>

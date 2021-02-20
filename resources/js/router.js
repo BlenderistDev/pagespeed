@@ -29,7 +29,8 @@ export default new VueRouter({
     {
       path: '/audit/:id',
       name: 'audit',
-      component: Audit
+      component: Audit,
+      props: true
     },
   ],
 });
