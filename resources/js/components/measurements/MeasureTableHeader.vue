@@ -2,9 +2,12 @@
 thead
   tr
     th(scope="col")
+      FilterForm(field="id") id
+      SortButton(columnName="id") id
+    th(scope="col")
       FilterForm(field="domain")
       SortButton(columnName="domain") domain
-    th(scope="col") 
+    th(scope="col")
       FilterForm(field="comment")
       SortButton(columnName="comment") comment
     th(scope="col")

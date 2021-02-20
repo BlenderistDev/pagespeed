@@ -38,6 +38,11 @@ abstract class PageSpeed implements IAuditService
         return $this->getAuditResultFactory()->modelName()::byDomain($domain)->get()->keyBy('id')->groupBy(['audits_id'])->toArray();
     }
 
+    public function getAuditResultsById(int $id): array
+    {
+      return $this->getAuditResultFactory()->modelName()::find($id)->toArray();
+    }
+
     public abstract function getAuditResultFactory(): AuditResultFactoryPrototype;
 
     protected abstract function getAuditsFactory(): AuditsFactoryPrototype;

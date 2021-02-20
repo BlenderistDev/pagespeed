@@ -17,9 +17,6 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'sort'
-    ]),
     newSortingWay: function() {
       if (!this.sortWay || this.sortWay === 'DESC') {
         return'ASC';
@@ -35,10 +32,10 @@ export default {
       }
     },
     sortField: function() {
-      return this.sort.field;
+      return this.$store.state.sort.field;
     },
     sortService: function() {
-      return this.sort.service;
+      return this.$store.state.sort.service;
     },
     showSortIcon: function() {
       return (this.sortField === this.auditId) && (this.sortService === this.service)

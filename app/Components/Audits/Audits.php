@@ -44,6 +44,14 @@ class Audits
         return $auditResults ?? [];
     }
 
+    public static function getAuditResultById(int $id): array
+    {
+      foreach (self::getAuditServices() as $serviceName => $service) {
+        $auditResult[$serviceName] = $service->getAuditResultsById($id);
+      }
+      return $auditResult ?? [];
+    }
+
     /**
      * @return IAuditService[]
      */

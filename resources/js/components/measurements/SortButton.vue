@@ -17,9 +17,6 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'sort'
-    ]),
     newSortingWay: function() {
       if (!this.sortWay || this.sortWay === 'DESC') {
         return'ASC';
@@ -35,7 +32,7 @@ export default {
       }
     },
     sortField: function() {
-      return this.sort.field;
+      return this.$store.state.sort.field;
     }
   },
   methods: {
@@ -44,7 +41,7 @@ export default {
     ]),
     sortClick: function() {
       this.sortWay = this.newSortingWay;
-      this.sort(this.sortObject);      
+      this.sort(this.sortObject);
     }
   }
 }

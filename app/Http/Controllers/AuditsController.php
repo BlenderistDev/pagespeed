@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Audits;
 use App\Models\DesktopAudits;
+use Illuminate\Support\Facades\Request;
 
 class AuditsController extends Controller
 {
