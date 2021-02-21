@@ -30,6 +30,10 @@ Route::get('/regular-audits', function () {
     return view('welcome');
 });
 
+Route::get('/audit/{id}', function () {
+    return view('welcome');
+});
+
 Route::get('admin', function() {
     return view('admin');
 })->middleware('auth');

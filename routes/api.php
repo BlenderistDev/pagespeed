@@ -26,6 +26,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('audits', [AuditsController::class, 'index']);
 Route::post('audit-results', [AuditResultsController::class, 'index']);
 Route::post('audit-results/domain', [AuditResultsController::class, 'domain']);
+Route::post('audit-results/show', [AuditResultsController::class, 'show']);
 
 Route::post('measurements', [MeasurementsController::class, 'index']);
 Route::post('measurements/store', [MeasurementsController::class, 'store']);

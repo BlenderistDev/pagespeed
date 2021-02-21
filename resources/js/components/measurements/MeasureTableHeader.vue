@@ -29,7 +29,7 @@ import SortButton from './SortButton.vue';
 import SortButtonAudit from './SortButtonAudit.vue';
 import FilterForm from './FilterForm.vue';
 import DateFilter from './DateFilter.vue';
-import { mapGetters, mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   components: {

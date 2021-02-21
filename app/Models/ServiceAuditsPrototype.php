@@ -45,6 +45,14 @@ abstract class ServiceAuditsPrototype extends Model
         return $query;
     }
 
+    public function scopeByMeasurement(Builder $query, int $measurementId): Builder
+    {
+        $query->whereHas('measurement', function(Builder $query) use ($measurementId) {
+            return $query->where('measurements_id', '=', $measurementId);
+        });
+        return $query;
+    }
+
     public function getXAttribute()
     {
         return $this->created_at;
