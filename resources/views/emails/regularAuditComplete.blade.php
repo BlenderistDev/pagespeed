@@ -20,4 +20,8 @@
 @endforeach
 @endcomponent
 
+@component('mail::button', ['url' => $url, 'color' => 'success'])
+Посмотреть
+@endcomponent
+
 @endcomponent

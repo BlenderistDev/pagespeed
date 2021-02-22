@@ -20,6 +20,7 @@ class RegularAuditComplete extends Mailable
         return $this->from('noreplay@smoke-e.ru')
             ->markdown('emails.regularAuditComplete', [
                 'measurement' => $this->measurement,
+                'url' => env('APP_URL') . "/audit/{$this->measurement->id}",
             ]);
     }
 }
