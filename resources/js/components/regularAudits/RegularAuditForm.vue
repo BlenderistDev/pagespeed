@@ -46,10 +46,8 @@ export default {
       let fieldClass = 'col-sm-8 form-control ';
       if (this.errors[fieldKey]) {
         fieldClass += "is-invalid";
-      } else {
-        if (this.formValidated) {
-          fieldClass += 'is-valid';
-        }
+      } else if (this.formValidated) {
+        fieldClass += 'is-valid';
       }
       return fieldClass;
     },
