@@ -19,7 +19,6 @@ class AuditResultsController extends Controller
         return Audits::getAuditResultsByDomain($domain);
     }
 
-
     public function show(Request $request): array
     {
         $id = $request->input('id');
