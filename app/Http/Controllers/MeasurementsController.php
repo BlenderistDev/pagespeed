@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 
 class MeasurementsController extends Controller
 {
+    private const ON_PAGE_DEFAULT = 10;
+
     public function index(Request $request): Collection
     {
         $measureCollectionBuilder = Audits::getAuditCollection();
@@ -35,7 +37,7 @@ class MeasurementsController extends Controller
 
         $page = $request->input('page');
         $pageNumber = $page['page'] ?? 1;
-        $onPage = $page['onPage'] ?? 10;
+        $onPage = $page['onPage'] ?? self::ON_PAGE_DEFAULT;
 
         return $measureCollectionBuilder->getCollection($pageNumber, $onPage);
     }
