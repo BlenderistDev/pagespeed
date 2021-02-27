@@ -9,10 +9,11 @@ class AuditCollection
 {
     private $measurements;
 
-    public function __construct(
-        /** @var IAuditService[] $auditServices */
-        private array $auditServices
-    )
+    /**
+     * @param IAuditService[] $auditServices 
+     * @return void
+     */
+    public function __construct(private array $auditServices)
     {
         $this->measurements = Measurements::with($this->getRelations());
     }
