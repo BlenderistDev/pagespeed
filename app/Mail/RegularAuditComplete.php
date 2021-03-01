@@ -11,9 +11,7 @@ class RegularAuditComplete extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(private Measurements $measurement)
-    {
-    }
+    public function __construct(private Measurements $measurement) {}
 
     public function build(): self
     {
