@@ -56,7 +56,6 @@ abstract class ServiceAuditsPrototype extends Model
     public function getXAttribute()
     {
         return $this->created_at;
-        return Carbon::parse($this->created_at)->timestamp;
     }
 
     public function getYAttribute()
