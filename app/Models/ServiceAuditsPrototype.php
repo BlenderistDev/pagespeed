@@ -53,12 +53,12 @@ abstract class ServiceAuditsPrototype extends Model
         return $query;
     }
 
-    public function getXAttribute()
+    public function getXAttribute(): string
     {
         return $this->created_at;
     }
 
-    public function getYAttribute()
+    public function getYAttribute(): float
     {
         $y = (float) $this->value;
         while ($y > 1) {
