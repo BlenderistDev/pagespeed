@@ -9,9 +9,11 @@ use Database\Factories\AuditsFactoryPrototype;
 
 class MobilePageSpeed extends PageSpeed
 {
+    const STRATEGY = "MOBILE";
+
     protected function getStrategy(): string
     {
-        return "MOBILE";
+        return self::STRATEGY;
     }
 
     protected function getAuditsFactory(): AuditsFactoryPrototype

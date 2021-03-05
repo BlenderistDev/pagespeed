@@ -9,9 +9,11 @@ use Database\Factories\AuditsFactoryPrototype;
 
 class DesktopPageSpeed extends PageSpeed
 {
+    private const STRATEGY = 'DESKTOP';
+
     protected function getStrategy(): string
     {
-        return "DESKTOP";
+        return self::STRATEGY;
     }
 
     protected function getAuditsFactory(): AuditsFactoryPrototype
