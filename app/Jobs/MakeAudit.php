@@ -18,6 +18,8 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
 
     private array $email = [];
 
+    private const REGULAR_AUDIT_COMMENT = 'regular audit';
+
     /**
      * Create a new job instance.
      *
@@ -39,7 +41,7 @@ class MakeAudit implements ShouldQueue, ShouldBeUnique
     public function handle(Measurements $measurements): void
     {
         $measurements->domain = $this->url;
-        $measurements->comment = "regular audit";
+        $measurements->comment = self::REGULAR_AUDIT_COMMENT;
         $measurements->save();
         $this->sendMail($measurements);
     }
